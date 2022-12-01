@@ -25,7 +25,7 @@ public class FileSelect : MonoBehaviour
         files = new List<GameObject>();
         // Searches for the map4xfiles folder
         DirectoryInfo dir = new DirectoryInfo($"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}"
-            + @"\map4xfiles");
+            + Path.DirectorySeparatorChar + @"map4xfiles");
         // Searches for .map4x files inside the folder
         info = dir.GetFiles("*.map4x");
 
