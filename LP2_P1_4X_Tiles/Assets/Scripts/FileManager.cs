@@ -30,16 +30,13 @@ public class FileManager : MonoBehaviour
         // Tries to run the specified code if an exception isn't encountered
         try
         {
-            // Checks the existence of all the files with the *.map4x extension 
-            // and assigns them to an array
+            // Checks the existence of the target files and assigns them
             _filesInFolder = Directory.GetFiles(_directoryPath, "*.map4x");
         }
         // Catches the specified exception and runs the code for the situation
         catch (DirectoryNotFoundException _dnfe)
         {
-            _dnfe = "The folder was not found in oyur desktop"
-            DebugLog(_dnfe);
-            //!_folderFileError.SetActive(true);
+            Console.WriteLine("The folder was not found in the desktop", _dnfe);
         }      
     }
 
