@@ -50,36 +50,36 @@ public class GridHandler : MonoBehaviour
     /// Method used to check the desired type of a given tile and assign it the
     /// according properties (Color, Gold and Food value).
     /// </summary>
-    /// <param name="TileBlueprint"> String that corresponds to
+    /// <param name="tileBlueprint"> String that corresponds to
     /// an entire line on the .map4x file, or in other words, a Tile, and
     /// contains the information of the desired properties for that Tile</param>
-    /// <param name="TileListIndex"> Index of the Tile on the List of
+    /// <param name="tileListIndex"> Index of the Tile on the List of
     /// instantiated Tiles to be changed</param>
-    private void CheckType(string TileBlueprint, int TileListIndex)
+    private void CheckType(string tileBlueprint, int tileListIndex)
     {
-        if (TileBlueprint.Contains("desert"))
+        if (tileBlueprint.Contains("desert"))
         {
-            _tiles[TileListIndex].Init(TileType.desert);
+            _tiles[tileListIndex].Init(Terrain.desert);
         }
 
-        else if (TileBlueprint.Contains("grassland"))
+        else if (tileBlueprint.Contains("plains"))
         {
-            _tiles[TileListIndex].Init(TileType.grassland);
+            _tiles[tileListIndex].Init(Terrain.plains);
         }
 
-        else if (TileBlueprint.Contains("hills"))
+        else if (tileBlueprint.Contains("hills"))
         {
-            _tiles[TileListIndex].Init(TileType.hills);
+            _tiles[tileListIndex].Init(Terrain.hills);
         }
 
-        else if (TileBlueprint.Contains("mountain"))
+        else if (tileBlueprint.Contains("mountain"))
         {
-            _tiles[TileListIndex].Init(TileType.mountain);
+            _tiles[tileListIndex].Init(Terrain.mountain);
         }
 
-        else if (TileBlueprint.Contains("ocean"))
+        else if (tileBlueprint.Contains("water"))
         {
-            _tiles[TileListIndex].Init(TileType.ocean);
+            _tiles[tileListIndex].Init(Terrain.water);
         }
     }
 

@@ -22,8 +22,8 @@ public class Tile : MonoBehaviour
     [SerializeField] private GameObject TileCamera;
 
     // Declares Type attribute for the Tile from the set defined by enum
-    // TileTypes
-    public TileType Type;
+    // Terrains
+    public Terrain Type;
 
     // Declares string variable to store the Tile's type
     private string _tileType;
@@ -31,45 +31,54 @@ public class Tile : MonoBehaviour
     // Declares different Food and Gold values given by each Tile's Type
     private int _desertGold = 0;
     private int _desertFood = 0;
-    private int _grasslandGold = 0;
-    private int _grasslandFood = 2;
+
+    private int _plainsGold = 0;
+    private int _plainsFood = 2;
+    
     private int _hillsGold = 1;
     private int _hillsFood = 1;
+    
     private int _mountainGold = 1;
     private int _mountainFood = 0;
-    private int _oceanGold = 0;
-    private int _oceanFood = 1;
+    
+    private int _waterGold = 0;
+    private int _waterFood = 1;
 
     // Declares different colors to be applied to the Tile's Sprite based on its
     // type
     [SerializeField]
     private Color
         _desertColor,
-        _grasslandColor,
+        _plainsColor,
         _hillsColor,
         _mountainColor,
-        _oceanColor,
+        _waterColor,
         _defaultColor;
 
     // Declares different Food and Gold value modifiers
     // given by each Resource present on Tile
     private int plantsGoldMod = 1;
     private int plantsFoodMod = 2;
-    private int animalsGoldMod = 2;
+
+    private int animalsGoldMod = 1;
     private int animalsFoodMod = 3;
+    
     private int metalsGoldMod = 3;
     private int metalsFoodMod = -1;
-    private int fossilfuelGoldMod = 4;
-    private int fossilfuelFoodMod = -2;
+    
+    private int fossilfuelGoldMod = 5;
+    private int fossilfuelFoodMod = -3;
+    
     private int luxuryGoldMod = 4;
-    private int luxuryFoodMod = 0;
-    private int pollutionGoldMod = -2;
+    private int luxuryFoodMod = -1;
+    
+    private int pollutionGoldMod = -3;
     private int pollutionFoodMod = -3;
 
 
-    // Declares variables for the Tile's Gold and Food overall Value
-    public int _TileGoldValue;
-    public int _TileFoodValue;
+     // Declares variables for the Tile's Gold and Food overall Value
+    public int _tileGoldValue;
+    public int _tileFoodValue;
 
     // Defines booleans to determine if a given resource is present on the Tile
     private bool HasPlants;
@@ -131,11 +140,11 @@ public class Tile : MonoBehaviour
 
         // Calls the DisplayFoodAndGold method from 
         // TileInformationDisplay script and passes it two integers
-        _tileInfoDisplay.DisplayFoodAndGold(_TileGoldValue, _TileFoodValue);
+        _tileInfoDisplay.DisplayFoodAndGold(_tileGoldValue, _tileFoodValue);
 
         // Calls the DisplayTile method from 
         // TileInformationDisplay script and passes it a string 
-        _tileInfoDisplay.DisplayTileType(_tileType);
+        _tileInfoDisplay.DisplayTerrain(_tileType);
 
         // Calls the DisplayTile method from 
         // TileInformationDisplay script and passes it 6 bools 
@@ -162,8 +171,8 @@ public class Tile : MonoBehaviour
     /// its type
     /// </summary>
     /// <param name="type"> A given Tile's type, from the available
-    /// items in TileTypes enum </param>
-    public void Init(TileType type)
+    /// items in Terrains enum </param>
+    public void Init(Terrain type)
     {
         this.Type = type;
 
@@ -172,35 +181,35 @@ public class Tile : MonoBehaviour
         // said type and assigns the Tile type to a string
         switch (type)
         {
-            case TileType.desert:
+            case Terrain.desert:
                 _renderer.color = _desertColor;
-                _TileGoldValue += _desertGold;
-                _TileFoodValue += _desertFood;
+                _tileGoldValue += _desertGold;
+                _tileFoodValue += _desertFood;
                 _tileType = "Desert";
                 break;
-            case TileType.grassland:
-                _renderer.color = _grasslandColor;
-                _TileGoldValue += _grasslandGold;
-                _TileFoodValue += _grasslandFood;
-                _tileType = "Grassland";
+            case Terrain.plains:
+                _renderer.color = _plainsColor;
+                _tileGoldValue += _plainsGold;
+                _tileFoodValue += _plainsFood;
+                _tileType = "Plains";
                 break;
-            case TileType.hills:
+            case Terrain.hills:
                 _renderer.color = _hillsColor;
-                _TileGoldValue += _hillsGold;
-                _TileFoodValue += _hillsFood;
+                _tileGoldValue += _hillsGold;
+                _tileFoodValue += _hillsFood;
                 _tileType = "Hills";
                 break;
-            case TileType.mountain:
+            case Terrain.mountain:
                 _renderer.color = _mountainColor;
-                _TileGoldValue += _mountainGold;
-                _TileFoodValue += _mountainFood;
+                _tileGoldValue += _mountainGold;
+                _tileFoodValue += _mountainFood;
                 _tileType = "Mountain";
                 break;
-            case TileType.ocean:
-                _renderer.color = _oceanColor;
-                _TileGoldValue += _oceanGold;
-                _TileFoodValue += _oceanFood;
-                _tileType = "Ocean";
+            case Terrain.water:
+                _renderer.color = _waterColor;
+                _tileGoldValue += _waterGold;
+                _tileFoodValue += _waterFood;
+                _tileType = "Water";
                 break;
         }
     }
@@ -217,48 +226,48 @@ public class Tile : MonoBehaviour
     {
         if (resource == "plants")
         {
-            _TileGoldValue += plantsGoldMod;
-            _TileFoodValue += plantsFoodMod;
+            _tileGoldValue += plantsGoldMod;
+            _tileFoodValue += plantsFoodMod;
             HasPlants = true;
             _plantsSprite.SetActive(true);
         }
 
         else if (resource == "animals")
         {
-            _TileGoldValue += animalsGoldMod;
-            _TileFoodValue += animalsFoodMod;
+            _tileGoldValue += animalsGoldMod;
+            _tileFoodValue += animalsFoodMod;
             HasAnimals = true;
             _animalsSprite.SetActive(true);
         }
 
         else if (resource == "metals")
         {
-            _TileGoldValue += metalsGoldMod;
-            _TileFoodValue += metalsFoodMod;
+            _tileGoldValue += metalsGoldMod;
+            _tileFoodValue += metalsFoodMod;
             HasMetals = true;
             _metalsSprite.SetActive(true);
         }
 
         else if (resource == "fossilfuel")
         {
-            _TileGoldValue += fossilfuelGoldMod;
-            _TileFoodValue += fossilfuelFoodMod;
+            _tileGoldValue += fossilfuelGoldMod;
+            _tileFoodValue += fossilfuelFoodMod;
             HasFossilFuel = true;
             _fossilFuelSprite.SetActive(true);
         }
 
         else if (resource == "luxury")
         {
-            _TileGoldValue += luxuryGoldMod;
-            _TileFoodValue += luxuryFoodMod;
+            _tileGoldValue += luxuryGoldMod;
+            _tileFoodValue += luxuryFoodMod;
             HasLuxury = true;
             _luxurySprite.SetActive(true);
         }
 
         else if (resource == "pollution")
         {
-            _TileGoldValue += pollutionGoldMod;
-            _TileFoodValue += pollutionFoodMod;
+            _tileGoldValue += pollutionGoldMod;
+            _tileFoodValue += pollutionFoodMod;
             HasPollution = true;
             _pollutionSprite.SetActive(true);
         }

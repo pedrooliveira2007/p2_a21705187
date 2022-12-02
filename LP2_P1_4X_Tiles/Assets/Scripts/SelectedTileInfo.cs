@@ -54,7 +54,7 @@ public class SelectedTileInfo : MonoBehaviour
     /// Displays the tile type of the targeted tile
     /// </summary>
     /// <param name="_type"></param>
-    public void DisplayTileType(string _type)
+    public void DisplayTerrain(string _type)
     {
         // Sets the text component of the game object _tileType to display
         // the _type string
@@ -64,26 +64,26 @@ public class SelectedTileInfo : MonoBehaviour
     /// <summary>
     /// Displays the resources of the targeted tile
     /// </summary>
-    /// <param name="HasPlants"> A bool that returns true or false if the tile
+    /// <param name="hasPlants"> A bool that returns true or false if the tile
     /// has or does not have Plants </param>
-    /// <param name="HasAnimals"> A bool that returns true or false if the tile
+    /// <param name="hasAnimals"> A bool that returns true or false if the tile
     /// has or does not have Animals </param>
-    /// <param name="HasMetals"> A bool that returns true or false if the tile
+    /// <param name="hasMetals"> A bool that returns true or false if the tile
     /// has or does not have Metals </param>
-    /// <param name="HasFossilFuel"> A bool that returns true or false if the
+    /// <param name="hasFossilFuel"> A bool that returns true or false if the
     /// tile has or does not have Fossil Fuel </param>
-    /// <param name="HasLuxury"> A bool that returns true or false if the tile
+    /// <param name="hasLuxury"> A bool that returns true or false if the tile
     /// has or does not have Luxury </param>
-    /// <param name="HasPollution"> A bool that returns true or false if the
+    /// <param name="hasPollution"> A bool that returns true or false if the
     /// tile has or does not have Pollution </param>
-    public void DisplayResources(bool HasPlants, bool HasAnimals,
-        bool HasMetals, bool HasFossilFuel, bool HasLuxury, bool HasPollution)
+    public void DisplayResources(bool hasPlants, bool hasAnimals,
+        bool hasMetals, bool hasFossilFuel, bool hasLuxury, bool hasPollution)
     {
         // A string that displays all the resources and if they are or not
         // present on the target tile
-        string _totalResources = $"Plants: {HasPlants} | Animals: {HasAnimals}"
-        + $" |  Metals: {HasMetals} | Fossil Fuel: {HasFossilFuel} | " +
-        $"Luxury: {HasLuxury} | Pollution: {HasPollution}";
+        string _totalResources = $"Plants: {hasPlants} | Animals: {hasAnimals}"
+        + $" |  Metals: {hasMetals} | Fossil Fuel: {hasFossilFuel} | " +
+        $"Luxury: {hasLuxury} | Pollution: {hasPollution}";
 
         // Sets the text component of the game object _resources to display
         // the _totalResources string
