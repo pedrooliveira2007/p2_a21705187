@@ -4,19 +4,10 @@ using UnityEngine;
 
 public class ProcessMapInformation : MonoBehaviour
 {
-    // Declares a game object variable to be assigned in editor
-    [SerializeField]
-    private GameObject _fileGridSetupError;
-    // Declares a game object variable to be assigned in editor
-    [SerializeField]
-    private GameObject _mainMenu;
-    // Declares a game object variable to be assigned in editor
-    [SerializeField]
-    private GameObject _ingameUI;
     // Declares two string variables
-    string _rowsInfo, _colsInfo;
+    private string _rowsInfo, _colsInfo;
     // Declares 2 integer variables
-    int _rows, _cols;
+    private int _rows, _cols;
 
     /// <summary>
     /// Receives the information about the map from the FileManager 
@@ -69,14 +60,14 @@ public class ProcessMapInformation : MonoBehaviour
             {
                 // Sets _fileGridSetupError game object SetActive() value 
                 // as true
-                _fileGridSetupError.SetActive(true);
+                //!_fileGridSetupError.SetActive(true);
             }
         }
         // Catches the specified exception and runs the code for the situation
         catch (ArgumentOutOfRangeException)
         {
             // Sets _fileGridSetupError game object SetActive() value as true
-            _fileGridSetupError.SetActive(true);
+            //!_fileGridSetupError.SetActive(true);
         }
     }
 
@@ -94,10 +85,5 @@ public class ProcessMapInformation : MonoBehaviour
 
         // Remove the 1st element of _tileInformation list
         _tileInformation.RemoveAt(0);
-
-        // Sets the In-gameUI's SetActive() value as true
-        _ingameUI.SetActive(true);
-        // Sets the MainMenu's SetActive() value as false
-        _mainMenu.SetActive(false);
     } 
 }
