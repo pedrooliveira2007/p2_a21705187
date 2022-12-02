@@ -79,5 +79,8 @@ public class ProcessMapInformation : MonoBehaviour
 
         // Remove the 1st element of _tileInformation list
         _tileInformation.RemoveAt(0);
+
+        // Passes the list into a method to generate the map
+        // TODO
     } 
 }
