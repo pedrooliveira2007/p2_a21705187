@@ -33,7 +33,7 @@ public class FileManager : MonoBehaviour
             // Checks the existence of the target files and assigns them
             _filesInFolder = Directory.GetFiles(_directoryPath, "*.map4x");
         }
-        // Catches the specified exception and runs the code for the situation
+        // Catches the specified exception and displays a warning
         catch (DirectoryNotFoundException _dnfe)
         {
             Console.WriteLine("The folder was not found in the desktop", _dnfe);
