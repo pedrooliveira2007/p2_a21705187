@@ -1643,8 +1643,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: No files found, make sure your desktop has the folder 'map4xfiles' with
-    files from the accepted extention '.map4x'
+  m_Text: No files or folder have been found, make sure your desktop has the folder
+    'map4xfiles' with files from the accepted extention '.map4x'
 --- !u!222 &998031609
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3292,7 +3292,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Academic project developed for 'Linguagens de Programa\xE7\xE3o 2' by:"
+  m_Text: "Academic project developed for 'Linguagens de Programa\xE7\xE3o 2' by:\n\nAfonso
+    Rosa\t\t - a21802169  \nNuno Figueiredo\t - a21705451\nPedro Oliveira\t\t - a21705187"
 --- !u!222 &1730971662
 CanvasRenderer:
   m_ObjectHideFlags: 0

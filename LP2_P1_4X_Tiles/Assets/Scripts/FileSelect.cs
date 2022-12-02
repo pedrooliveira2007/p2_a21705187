@@ -27,7 +27,7 @@ public class FileSelect : MonoBehaviour
         try
         {
             DirectoryInfo dir = new DirectoryInfo($"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}"
-                + Path.DirectorySeparatorChar + @"map4xfiles");
+                + Path.DirectorySeparatorChar + "map4xfiles");
             // Searches for .map4x files inside the folder
             info = dir.GetFiles("*.map4x");
 
