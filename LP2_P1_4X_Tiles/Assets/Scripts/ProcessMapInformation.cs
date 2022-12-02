@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class ProcessMapInformation : MonoBehaviour
 {
-    // Declares two string variables
+    // Declaration of variables
     private string _rowsInfo, _colsInfo;
-    // Declares 2 integer variables
     private int _rows, _cols;
 
     /// <summary>
