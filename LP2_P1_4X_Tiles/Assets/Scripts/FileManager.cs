@@ -44,10 +44,11 @@ public class FileManager : MonoBehaviour
     /// Reads the contents of the file chosen by the user in the main menu
     /// </summary>
     /// <param name="_buttonText"> The string displayed on the button </param>
-    public void ReadFile(string _buttonText)
+    public void ReadFile()
     {
+        Debug.Log("File name is " + FileButton._buttonText);
         // Gets the path to the specified file
-        string _filePath = _directoryPath + Path.DirectorySeparatorChar + Path.GetFileName(_buttonText);
+        string _filePath = _directoryPath + Path.DirectorySeparatorChar + Path.GetFileName(FileButton._buttonText);
         
         // Reads and assigns all lines in the specified file directory
         string[] _linesInFile = File.ReadAllLines(_filePath);
