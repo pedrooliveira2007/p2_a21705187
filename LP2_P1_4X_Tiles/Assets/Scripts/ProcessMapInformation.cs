@@ -9,14 +9,13 @@ public class ProcessMapInformation : MonoBehaviour
     private int _rows, _cols;
 
     /// <summary>
-    /// Receives the information about the map from the FileManager 
-    /// and calls the methods required to process the information
+    /// Receives the information about the map and processes it
     /// </summary>
     /// <param name="_mapInformation"> A list of strings with the 
     /// information about the map </param>
     public void ReceiveMapInfo(List<string> _mapInformation)
     {
-        // Calls ProcessMapGrid() method and passes it _mapInformation list
+        // Process the map information and passes it a list with strings
         ProcessMapGrid(_mapInformation);
 
         // Calls ProcessTileInformation() method and passes it 
@@ -34,48 +33,44 @@ public class ProcessMapInformation : MonoBehaviour
         // Tries to run the specified code if an exception isn't encountered
         try
         {
-            // Gets the 1st element of the list _mapInformation and gets 
-            // everything before a whitespace, then stores it in _rowsInfo
+            // Gets the 1st element of the list and gets everything 
+            // before a whitespace, then stores it 
             _rowsInfo = _mapInformation[0].
                 Substring(0, _mapInformation[0].LastIndexOf(" "));
 
-            // Gets the 1st element of the list _mapInformation and gets 
-            // everything after a whitespace, then stores it in _colsInfo
+            // Gets the 2nd element of the list and gets everything 
+            // before a whitespace, then stores it 
             _colsInfo =  _mapInformation[0].
                 Substring(_mapInformation[0].LastIndexOf(" ") + 1);
             
             // Tries to run the specified code if an exception isn't encountered
             try
             {
-                // Converts _rowsInfo into a integer and stores it in _rows
+                // Converts the Rows respective string into an int and stores it 
                 _rows = Int32.Parse(_rowsInfo);
 
-                // Converts _colsInfo into a integer and stores it in _cols
+                // Converts the Cols respective string into a int and stores it 
                 _cols = Int32.Parse(_colsInfo);
             }
-            // Catches the specified exception and runs the code for 
-            // the situation
-            catch (FormatException)
+            // Catches the specified exception and displays a warning
+            catch (FormatException _fe)
             {
-                // Sets _fileGridSetupError game object SetActive() value 
-                // as true
-                //!_fileGridSetupError.SetActive(true);
+                Console.WriteLine("The Columns/Rows aren't numbers", _fe);
             }
         }
-        // Catches the specified exception and runs the code for the situation
-        catch (ArgumentOutOfRangeException)
+        // Catches the specified exception and displays a warning
+        catch (ArgumentOutOfRangeException _aoore)
         {
-            // Sets _fileGridSetupError game object SetActive() value as true
-            //!_fileGridSetupError.SetActive(true);
+            Console.WriteLine("There is nothing to read correctly.", _aoore);
         }
     }
 
     /// <summary>
-    /// Removes the coordinates from the list _mapInformation and passes it s a 
-    /// new list _tileInformation with the necessary elements for tile creation
+    /// Removes the Columns and Rows from the list and passes a new list 
+    /// necessary for the grid generation
     /// </summary>
-    /// <param name="_mapInformation"> A list of strings with all the filtered 
-    /// info in the file </param>
+    /// <param name="_mapInformation"> A list of strings with everything 
+    /// needed to generate the game map </param>
     public void ProcessTileInformation(List<string> _mapInformation)
     {
         // Instantiate new lists of strings _titleInformation 
@@ -84,5 +79,8 @@ public class ProcessMapInformation : MonoBehaviour
 
         // Remove the 1st element of _tileInformation list
         _tileInformation.RemoveAt(0);
+
+        // Passes the list into a method to generate the map
+        // TODO
     } 
 }

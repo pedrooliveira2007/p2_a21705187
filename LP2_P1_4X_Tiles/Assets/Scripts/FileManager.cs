@@ -11,6 +11,7 @@ public class FileManager : MonoBehaviour
     // Declaration of variables
     private ProcessMapInformation _pmi; 
     private string _directoryPath; 
+    private string _filePath;
     private string[] _filesInFolder;
 
     /// <summary>
@@ -33,7 +34,7 @@ public class FileManager : MonoBehaviour
             // Checks the existence of the target files and assigns them
             _filesInFolder = Directory.GetFiles(_directoryPath, "*.map4x");
         }
-        // Catches the specified exception and runs the code for the situation
+        // Catches the specified exception and displays a warning
         catch (DirectoryNotFoundException _dnfe)
         {
             Console.WriteLine("The folder was not found in the desktop", _dnfe);
@@ -48,7 +49,9 @@ public class FileManager : MonoBehaviour
     {
         Debug.Log("File name is " + FileButton._buttonText);
         // Gets the path to the specified file
-        string _filePath = _directoryPath + Path.DirectorySeparatorChar + Path.GetFileName(FileButton._buttonText);
+        _filePath = 
+            _directoryPath + Path.DirectorySeparatorChar + 
+            Path.GetFileName(FileButton._buttonText);
         
         // Reads and assigns all lines in the specified file directory
         string[] _linesInFile = File.ReadAllLines(_filePath);
