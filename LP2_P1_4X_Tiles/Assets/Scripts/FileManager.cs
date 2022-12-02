@@ -10,7 +10,8 @@ public class FileManager : MonoBehaviour
 {
     // Declaration of variables
     private ProcessMapInformation _pmi; 
-    private string _directoryPath; 
+    private readonly string _directoryPath; 
+    private readonly string _filePath;
     private string[] _filesInFolder;
 
     /// <summary>
@@ -47,7 +48,9 @@ public class FileManager : MonoBehaviour
     public void ReadFile(string _buttonText)
     {
         // Gets the path to the specified file
-        string _filePath = _directoryPath + Path.DirectorySeparatorChar + Path.GetFileName(_buttonText);
+        _filePath = 
+            _directoryPath + Path.DirectorySeparatorChar + 
+            Path.GetFileName(_buttonText);
         
         // Reads and assigns all lines in the specified file directory
         string[] _linesInFile = File.ReadAllLines(_filePath);
