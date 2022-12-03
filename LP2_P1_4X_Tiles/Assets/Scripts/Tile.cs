@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-
 
 public class Tile : MonoBehaviour
 {
@@ -20,17 +18,74 @@ public class Tile : MonoBehaviour
     // Declares Type attribute for the Tile from the set defined by enum Terrains
     public Terrain TerrainType { get; private set; }
     // Declares a generic enumeration of resources present inside this tile
-    public IEnumerable<Resource> Resources { get; private set; }
+    public List<Resource> Resources { get; private set; }
 
-
+    /// <summary>
+    /// Method used to set the tile Resources
+    /// </summary>
+    /// <param name="resources">Line from file containing the resources and aditional infos</param>
     internal void SetResources(string resources)
     {
+        if (resources.Contains("plants"))
+        {
+            Resources.Add(Resource.Plants);
+        }
 
+        if (resources.Contains("animals"))
+        {
+            Resources.Add(Resource.Animals);
+        }
+
+        if (resources.Contains("metals"))
+        {
+            Resources.Add(Resource.Metals);
+        }
+
+        if (resources.Contains("fossilfuel"))
+        {
+            Resources.Add(Resource.Fossilfuel);
+        }
+
+        if (resources.Contains("luxury"))
+        {
+            Resources.Add(Resource.Luxury);
+        }
+
+        if (resources.Contains("pollution"))
+        {
+            Resources.Add(Resource.Pollution);
+        }
     }
-
+    /// <summary>
+    /// Method used to set the TerrainType value
+    /// </summary>
+    /// <param name="type">Line from file containing the terrain type and aditional infos</param>
     internal void SetTerrainType(string type)
     {
+        if (type.Contains("desert"))
+        {
+            TerrainType = Terrain.Desert;
+        }
 
+        else if (type.Contains("plains"))
+        {
+            TerrainType = Terrain.Plains;
+        }
+
+        else if (type.Contains("hills"))
+        {
+            TerrainType = Terrain.Hills;
+        }
+
+        else if (type.Contains("mountain"))
+        {
+            TerrainType = Terrain.Mountain;
+        }
+
+        else if (type.Contains("water"))
+        {
+            TerrainType = Terrain.Water;
+        }
     }
 
 
@@ -40,11 +95,13 @@ public class Tile : MonoBehaviour
     /// </summary>
     /// <param name="type"> A given Tile's type, from the available
     /// items in Terrains enum </param>
-    public void InitializeTerrain(string tile)
+    public void InitializeTile(string tileInfo)
     {
 
-        SetResources();
-        SetTerrainType();
+        SetResources(tileInfo);
+        SetTerrainType(tileInfo);
+
+
         /* Switch statement checks for the passed Type of the tile,
            changing the color, Gold and Food Value's according to
            said type and assigns the Tile type to a string */
