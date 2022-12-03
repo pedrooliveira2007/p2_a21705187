@@ -3,7 +3,7 @@ using UnityEngine;
 using System.IO;
 using System;
 
-public class FileSelect : MonoBehaviour
+public class FileListUI : MonoBehaviour
 {
     [SerializeField]
     private GameObject button;
@@ -13,57 +13,42 @@ public class FileSelect : MonoBehaviour
 
     private List<GameObject> files;
 
-    private FileInfo[] info;
 
-    private void Start()
-    {
-        FileScanner();
-    }
 
-    private void FileScanner()
+    internal void PopulateFileUIList(IEnumerable<string> filesInFolder)
     {
         files = new List<GameObject>();
-        // Searches for the map4xfiles folder
-        try
-        {
-            DirectoryInfo dir = new DirectoryInfo($"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}"
-                + Path.DirectorySeparatorChar + @"map4xfiles");
-            // Searches for .map4x files inside the folder
-            info = dir.GetFiles("*.map4x");
 
-            // If there are no files inside
-            if (info.Length == 0)
+        if (((List<string>)filesInFolder).Count == 0)
             { // Gives no files message
                 noFiles.SetActive(true);
                 button.SetActive(false);
             }
             else // if there are files inside
             { // Creates a button with the file name for each file
-                foreach (FileInfo f in info)
+                foreach (string f in filesInFolder)
                 {
+                Console.WriteLine("aaa"+f);
                     files.Add(Instantiate(button, (button.transform.position), button.transform.rotation, button.transform.parent));
-                    files[files.Count - 1].GetComponentInChildren<UnityEngine.UI.Text>().text = f.Name;
+                    files[files.Count - 1].GetComponentInChildren<UnityEngine.UI.Text>().text = f;
                 }
                 // Deactivates original button
                 button.SetActive(false);
             }
-        }
-        catch
-        {
-            noFiles.SetActive(true);
-            button.SetActive(false);
-        }
+       
     }
 
-    public void Refresh()
+    public void Refresh(string[] filesInFolder)
     {
         noFiles.SetActive(false);
-        foreach (FileInfo f in info)
+        foreach (string f in filesInFolder)
         {
             Destroy(files[0]);
             files.RemoveAt(0);
         }
         button.SetActive(true);
-        FileScanner();
+        PopulateFileUIList(filesInFolder);
     }
+
+
 }
