@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class Tile : MonoBehaviour
@@ -9,8 +10,15 @@ public class Tile : MonoBehaviour
     [SerializeField] private SpriteRenderer _renderer;
     // Declares SpriteRenderer "list" to enable later the actual tile resource sprites
     [SerializeField] private IEnumerable<SpriteRenderer> _resourcesSpriteRenderer;
-    // Declares  the Tile's Sprite color based on its type
+    // Declares the Tile's Sprite color based on its type
     [SerializeField] private Color _tileColor;
+    // Declares Image to enable changes in the UI
+    [SerializeField] private Image _tilePanel;
+    // Declares bools to enable changes in the UI
+    [SerializeField] private bool 
+        hasAnimals = false, hasFossilFuel = false,
+        hasLuxury = false, hasMetals = false,
+        hasPlants = false, hasPollution = false;
 
     // Declares propreties for the Tile's Gold and Food overall Value
     public int TileCoinValue { get; private set; }
@@ -26,34 +34,40 @@ public class Tile : MonoBehaviour
     /// <param name="resources">Line from file containing the resources and aditional infos</param>
     internal void SetResources(string resources)
     {
-        if (resources.Contains("plants"))
-        {
-            Resources.Add(Resource.Plants);
-        }
-
         if (resources.Contains("animals"))
         {
             Resources.Add(Resource.Animals);
-        }
-
-        if (resources.Contains("metals"))
-        {
-            Resources.Add(Resource.Metals);
+            hasAnimals = true;
         }
 
         if (resources.Contains("fossilfuel"))
         {
             Resources.Add(Resource.Fossilfuel);
+            hasFossilFuel = true;
         }
 
         if (resources.Contains("luxury"))
         {
             Resources.Add(Resource.Luxury);
+            hasLuxury = true;
+        }
+
+        if (resources.Contains("metals"))
+        {
+            Resources.Add(Resource.Metals);
+            hasMetals = true;
+        }
+
+        if (resources.Contains("plants"))
+        {
+            Resources.Add(Resource.Plants);
+            hasPlants = true;
         }
 
         if (resources.Contains("pollution"))
         {
             Resources.Add(Resource.Pollution);
+            hasPollution = true;
         }
     }
     /// <summary>
@@ -163,25 +177,10 @@ public class Tile : MonoBehaviour
     {
         switch (resource)
         {
-
-            case Resource.Plants:
-
-                TileCoinValue += 1;
-                TileFoodValue += 2;
-
-                break;
-
             case Resource.Animals:
 
                 TileCoinValue += 1;
                 TileFoodValue += 3;
-
-                break;
-
-            case Resource.Metals:
-
-                TileCoinValue += 3;
-                TileFoodValue += -1;
 
                 break;
 
@@ -199,6 +198,20 @@ public class Tile : MonoBehaviour
 
                 break;
 
+            case Resource.Metals:
+
+                TileCoinValue += 3;
+                TileFoodValue += -1;
+
+                break;
+
+            case Resource.Plants:
+
+                TileCoinValue += 1;
+                TileFoodValue += 2;
+
+                break;
+
             case Resource.Pollution:
 
                 TileCoinValue += -3;
@@ -208,6 +221,41 @@ public class Tile : MonoBehaviour
 
             default:
                 break;
+        }
+    }
+
+    public void OnMouseOver()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            _tilePanel.gameObject.SetActive(true);
+            _tilePanel.transform.GetChild(0).
+                GetComponent<RawImage>().color
+                = _renderer.color;
+            _tilePanel.transform.GetChild(1).
+                GetChild(0).GetComponent<Text>().text
+                = TileCoinValue.ToString();
+            _tilePanel.transform.GetChild(2).
+                GetChild(0).GetComponent<Text>().text
+                = TileFoodValue.ToString();
+            if (hasAnimals) _tilePanel.transform.
+                    GetChild(3).GetChild(0).GetChild(0).
+                    gameObject.SetActive(true);
+            if (hasFossilFuel) _tilePanel.transform.
+                    GetChild(3).GetChild(0).GetChild(1).
+                    gameObject.SetActive(true);
+            if (hasLuxury) _tilePanel.transform.
+                    GetChild(3).GetChild(0).GetChild(2).
+                    gameObject.SetActive(true);
+            if (hasMetals) _tilePanel.transform.
+                    GetChild(3).GetChild(0).GetChild(3).
+                    gameObject.SetActive(true);
+            if (hasPlants) _tilePanel.transform.
+                    GetChild(3).GetChild(0).GetChild(4).
+                    gameObject.SetActive(true);
+            if (hasPollution) _tilePanel.transform.
+                    GetChild(3).GetChild(0).GetChild(5).
+                    gameObject.SetActive(true);
         }
     }
 

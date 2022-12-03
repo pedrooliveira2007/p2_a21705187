@@ -38,10 +38,10 @@ public class FileHandler
             // If there are files inside
             
             {  // Get the file name for each file
-                for (int i = 0; i <Info.Lenght();i++)
-                {
-                    FilesInFolder.Add(Info[i]);
-                }
+                /*for (int i = 0; i <Info.Lenght();i++)                                 <----------------------
+                {                                                                       <----------------------ERROR
+                    FilesInFolder.Add(Info[i]);                                         <----------------------
+                }*/
             }
         }
         // Catches the specified exception and displays a warning
