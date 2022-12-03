@@ -13,7 +13,7 @@ public class ProcessMapInformation : MonoBehaviour
     /// </summary>
     /// <param name="_mapInformation"> A list of strings with the 
     /// information about the map </param>
-    public void ReceiveMapInfo(List<string> _mapInformation)
+    public void ReceiveMapInfo(IList<string>_mapInformation)
     {
         // Process the map information and passes it a list with strings
         ProcessMapGrid(_mapInformation);
@@ -28,7 +28,7 @@ public class ProcessMapInformation : MonoBehaviour
     /// </summary>
     /// <param name="_mapInformation"> A list of strings with everything 
     /// needed to generate the game map </param>
-    private void ProcessMapGrid(List<string> _mapInformation)
+    private void ProcessMapGrid(IList<string> _mapInformation)
     {
         // Tries to run the specified code if an exception isn't encountered
         try
@@ -71,11 +71,11 @@ public class ProcessMapInformation : MonoBehaviour
     /// </summary>
     /// <param name="_mapInformation"> A list of strings with everything 
     /// needed to generate the game map </param>
-    public void ProcessTileInformation(List<string> _mapInformation)
+    public void ProcessTileInformation(IList<string> _mapInformation)
     {
         // Instantiate new lists of strings _titleInformation 
         // and copy _mapInformation list into it
-        List<string> _tileInformation = _mapInformation;
+        IList<string> _tileInformation = _mapInformation;
 
         // Remove the 1st element of _tileInformation list
         _tileInformation.RemoveAt(0);
