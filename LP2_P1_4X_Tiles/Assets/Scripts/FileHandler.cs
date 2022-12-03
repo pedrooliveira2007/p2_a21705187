@@ -38,7 +38,7 @@ public class FileHandler
             // If there are files inside
             
             {  // Get the file name for each file
-                for (int i = 0; i <Info.Lenght();i++)
+                for (int i = 0; i <Info.Length;i++)
                 {
                     FilesInFolder.Add(Info[i]);
                 }
@@ -59,8 +59,8 @@ public class FileHandler
     public void ReadFile(string fileName)
     {
        
-                // Reads and assigns all lines in the specified file directory
-                string[] _linesInFile = File.ReadAllLines(FilePath);
+        // Reads and assigns all lines in the specified file directory
+        string[] _linesInFile = File.ReadAllLines(FilePath);
 
         // Instantiates a list of strings to save only the needed information
         MapInformation = new List<string>();

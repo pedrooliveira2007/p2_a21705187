@@ -22,7 +22,7 @@ public class ProcessMapInformation : MonoBehaviour
     /// </summary>
     /// <param name="_mapInformation"> A list of strings with the 
     /// information about the map </param>
-    public void ReceiveMapInfo(IList<string>_mapInformation)
+    public void ReceiveMapInfo(IList<string> _mapInformation)
     {
         // Process the map information and passes it a list with strings
         ProcessMapGrid(_mapInformation);
@@ -99,7 +99,7 @@ public class ProcessMapInformation : MonoBehaviour
     /// </summary>
     /// <param name="_rows"> Desired rows on grid</param>
     /// <param name="_cols"> Desired columns on grid</param>
-    private void GenerateGrid(int _rows, int _cols, List<string> tilesBlueprints)
+    private void GenerateGrid(int _rows, int _cols, IList<string> tilesBlueprints)
     {
         // Initializes List of Tile to later on be used to easily refer back
         // to instantiated Tiles
