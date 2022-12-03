@@ -97,7 +97,7 @@ public class Tile : MonoBehaviour
     /// items in Terrains enum </param>
     public void InitializeTile(string tileInfo)
     {
-
+        //set the base values for the tile terrain type and tile resources
         SetResources(tileInfo);
         SetTerrainType(tileInfo);
 
