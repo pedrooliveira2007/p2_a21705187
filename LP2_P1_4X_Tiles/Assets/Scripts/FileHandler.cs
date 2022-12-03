@@ -34,15 +34,14 @@ public class FileHandler
                    + Path.DirectorySeparatorChar + @"map4xfiles");
 
             // Searches for .map4x files inside the folder
-            Info=  dir.GetFiles("*.map4x");
+            Info =  dir.GetFiles("*.map4x");
             // If there are files inside
             
             {  // Get the file name for each file
-                foreach (FileInfo f in Info)
+                for (int i = 0; i <Info.Lenght();i++)
                 {
-                    FilesInFolder.Add(f.Name);
+                    FilesInFolder.Add(Info[i]);
                 }
-
             }
         }
         // Catches the specified exception and displays a warning
