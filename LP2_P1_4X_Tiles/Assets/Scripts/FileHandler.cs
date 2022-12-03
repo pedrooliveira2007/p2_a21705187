@@ -6,58 +6,64 @@ using UnityEngine;
 /// <summary>
 /// Gets the files in the target directory, reads them and stores the content
 /// </summary>
-public class FileManager : MonoBehaviour
+[System.Serializable]
+public class FileHandler
 {
     // Declaration of variables
-    private ProcessMapInformation _pmi; 
-    private string _directoryPath; 
-    private string _filePath;
-    private string[] _filesInFolder;
+
+    public string DirectoryPath { get; internal set; }
+    public string FilePath { get; internal set; }
+    public List<string> FilesInFolder { get; internal set; }
+    public List<string> MapInformation { get; internal set; }
+    public string FileName { get; internal set; }
+    public FileInfo[] Info ;
+
+
 
     /// <summary>
-    /// Awake is called when the script instance is being loaded
+    /// Reads the map4xfiles folder, searching for the files
     /// </summary>
-    private void Awake() 
+    internal void GatherFolderAndFiles()
     {
-        // Gets a component from the current game object and assigns it
-        _pmi = GetComponent<ProcessMapInformation>();
-
-        // Gets the path to the "map4xfiles" folder on the desktop of the system
-        _directoryPath = 
-            Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.Desktop), 
-            "map4xfiles");         
-
         // Tries to run the specified code if an exception isn't encountered
         try
         {
-            // Checks the existence of the target files and assigns them
-            _filesInFolder = Directory.GetFiles(_directoryPath, "*.map4x");
+            // Gets the path to the specified file
+            DirectoryInfo dir =
+               new DirectoryInfo($"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}"
+                   + Path.DirectorySeparatorChar + @"map4xfiles");
+
+            // Searches for .map4x files inside the folder
+            Info =  dir.GetFiles("*.map4x");
+            // If there are files inside
+            
+            {  // Get the file name for each file
+                for (int i = 0; i <Info.Lenght();i++)
+                {
+                    FilesInFolder.Add(Info[i]);
+                }
+            }
         }
         // Catches the specified exception and displays a warning
         catch (DirectoryNotFoundException _dnfe)
         {
             Console.WriteLine("The folder was not found in the desktop", _dnfe);
-        }      
+        }
+
     }
 
     /// <summary>
     /// Reads the contents of the file chosen by the user in the main menu
     /// </summary>
     /// <param name="_buttonText"> The string displayed on the button </param>
-    public void ReadFile()
+    public void ReadFile(string fileName)
     {
-        Debug.Log("File name is " + FileButton._buttonText);
-        // Gets the path to the specified file
-        _filePath = 
-            _directoryPath + Path.DirectorySeparatorChar + 
-            Path.GetFileName(FileButton._buttonText);
-        
-        // Reads and assigns all lines in the specified file directory
-        string[] _linesInFile = File.ReadAllLines(_filePath);
+       
+                // Reads and assigns all lines in the specified file directory
+                string[] _linesInFile = File.ReadAllLines(FilePath);
 
         // Instantiates a list of strings to save only the needed information
-        List<string> _mapInformation = new List<string>();
+        MapInformation = new List<string>();
 
         // Goes through every line in _linesInFile 
         foreach (string line in _linesInFile)
@@ -67,32 +73,30 @@ public class FileManager : MonoBehaviour
             {
                 // Checks if the line starts with an # char and skips it
                 if (line.StartsWith("#"))
-                    continue; 
+                    continue;
                 else
                 {
                     // Modifies the string by getting everything 
                     // before an # char and storing it 
                     string _lineModified =
                             line.Substring(0, line.LastIndexOf("#"));
-                    
+
                     // Adds the current string to the _mapInformation List
-                    _mapInformation.Add(_lineModified);
+                    MapInformation.Add(_lineModified);
                 }
             }
             else
             {
                 // Adds the current line string to the _mapInformation list
-                _mapInformation.Add(line);
+                MapInformation.Add(line);
             }
         }
 
-        foreach (string line in _mapInformation)
+        foreach (string line in MapInformation)
         {
             Debug.Log(line);
         }
 
-        // Passes _mapInformation list 
-        // to the ProcessFileInfo() method while calling it
-        _pmi.ReceiveMapInfo(_mapInformation);
     }
 }
+

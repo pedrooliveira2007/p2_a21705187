@@ -24,7 +24,7 @@ X
 
 ## Legenda dos *tiles*
 
-![Legenda *tiles*](tiles.png)
+![Legenda *tiles*](legenda.png)
 
 ## Arquitetura da solução
 
