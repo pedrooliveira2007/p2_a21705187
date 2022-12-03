@@ -16,7 +16,7 @@ public class FileHandler
     public List<string> FilesInFolder { get; internal set; }
     public List<string> MapInformation { get; internal set; }
     public string FileName { get; internal set; }
-    public FileInfo[] Info ;
+    public string[] Info ;
 
 
 
@@ -29,16 +29,19 @@ public class FileHandler
         try
         {
             // Gets the path to the specified file
-            DirectoryInfo dir =
-               new DirectoryInfo($"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}"
-                   + Path.DirectorySeparatorChar + @"map4xfiles");
+            DirectoryPath = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.Desktop), 
+            "map4xfiles");
+            // DirectoryInfo dir =
+            //    new DirectoryInfo($"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}"
+            //        + Path.DirectorySeparatorChar + @"map4xfiles");
 
             // Searches for .map4x files inside the folder
-            Info =  dir.GetFiles("*.map4x");
+            // Info =  dir.GetFiles("*.map4x");
+            Info = Directory.GetFiles(DirectoryPath, "*.map4x");
             // If there are files inside
-            
             {  // Get the file name for each file
-                for (int i = 0; i <Info.Length;i++)
+                for (int i = 0; i < Info.Length;i++)
                 {
                     Debug.Log(Info[i]);
                     //FilesInFolder.Add(Info[i]);
