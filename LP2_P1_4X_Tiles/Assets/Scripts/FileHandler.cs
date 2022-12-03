@@ -40,7 +40,8 @@ public class FileHandler
             {  // Get the file name for each file
                 for (int i = 0; i <Info.Length;i++)
                 {
-                    FilesInFolder.Add(Info[i]);
+                    Debug.Log(Info[i]);
+                    //FilesInFolder.Add(Info[i]);
                 }
             }
         }
