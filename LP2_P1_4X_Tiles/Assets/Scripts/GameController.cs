@@ -22,7 +22,6 @@ public class GameController : MonoBehaviour
 
     public void LoadFileList()
     {
-
         //gather file names and the folder path
         _fileHandlerModel.GatherFolderAndFiles();
         //populates the button list with the files
@@ -40,5 +39,4 @@ public class GameController : MonoBehaviour
         _fileHandlerModel.ReadFile();
         _processMapInformationModel.ReceiveMapInfo(_fileHandlerModel.MapInformation, tilePanel);
     }
-
 }
