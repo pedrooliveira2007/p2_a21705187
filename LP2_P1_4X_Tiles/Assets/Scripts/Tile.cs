@@ -229,57 +229,78 @@ public class Tile : MonoBehaviour
                 break;
         }
     }
+    /// <summary>
+    /// Method that activates when the mouse is over a tile
+    /// </summary>
     public void OnMouseOver()
     {
         if (Input.GetMouseButtonUp(0))
         {
+            // Deactivates the forFuturePanel
             forFuturePanel.gameObject.SetActive(false);
+            // Deactivates all the resource images
             _tilePanel.transform.
                     GetChild(3).GetChild(0).GetChild(0).
                     gameObject.SetActive(false);
+
             _tilePanel.transform.
                     GetChild(3).GetChild(0).GetChild(1).
                     gameObject.SetActive(false);
+
             _tilePanel.transform.
                     GetChild(3).GetChild(0).GetChild(2).
                     gameObject.SetActive(false);
+
             _tilePanel.transform.
                     GetChild(3).GetChild(0).GetChild(3).
                     gameObject.SetActive(false);
+
             _tilePanel.transform.
                     GetChild(3).GetChild(0).GetChild(4).
                     gameObject.SetActive(false);
+
             _tilePanel.transform.
                     GetChild(3).GetChild(0).GetChild(5).
                     gameObject.SetActive(false);
+            // Activates the tilePanel
             _tilePanel.gameObject.SetActive(true);
+            // Changes the tilePanel's caller to the desired color
             _tilePanel.transform.GetChild(0).
                 GetComponent<RawImage>().color
                 = _renderer.color;
+            // Changes the tilePanel's terrain type to the desired terrain
             _tilePanel.transform.GetChild(0).
                 GetChild(0).GetComponent<Text>().text
                 = TerrainType.ToString();
+            // Changes the tilePanel's coin value to the desired value
             _tilePanel.transform.GetChild(1).
                 GetChild(0).GetComponent<Text>().text
                 = TileCoinValue.ToString();
+            // Changes the tilePanel's food value to the desired value
             _tilePanel.transform.GetChild(2).
                 GetChild(0).GetComponent<Text>().text
                 = TileFoodValue.ToString();
+            // Activates the resource images has desired
             if (hasAnimals) _tilePanel.transform.
                     GetChild(3).GetChild(0).GetChild(0).
                     gameObject.SetActive(true);
+
             if (hasFossilFuel) _tilePanel.transform.
                     GetChild(3).GetChild(0).GetChild(1).
                     gameObject.SetActive(true);
+
             if (hasLuxury) _tilePanel.transform.
                     GetChild(3).GetChild(0).GetChild(2).
                     gameObject.SetActive(true);
+
             if (hasMetals) _tilePanel.transform.
                     GetChild(3).GetChild(0).GetChild(3).
                     gameObject.SetActive(true);
+
             if (hasPlants) _tilePanel.transform.
                     GetChild(3).GetChild(0).GetChild(4).
                     gameObject.SetActive(true);
+
             if (hasPollution) _tilePanel.transform.
                     GetChild(3).GetChild(0).GetChild(5).
                     gameObject.SetActive(true);

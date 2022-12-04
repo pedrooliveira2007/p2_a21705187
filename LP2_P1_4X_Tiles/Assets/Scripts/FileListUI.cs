@@ -3,11 +3,15 @@ using System.Collections.Generic;
 
 public class FileListUI : MonoBehaviour
 {
+    // Declaring GameObjects that will be shown in the UI
     [SerializeField] private GameObject button;
     [SerializeField] private GameObject noFiles;
 
     private List<GameObject> files;
-
+    /// <summary>
+    /// Displays the list of files inside the 'map4xfiles' folder in Desktop
+    /// </summary>
+    /// <param name="filesInFolder">Files that are inside the folder</param>
     internal void PopulateFileUIList(IEnumerable<string> filesInFolder)
     {
         files = new List<GameObject>();
@@ -30,7 +34,5 @@ public class FileListUI : MonoBehaviour
             // Deactivates original button
             button.SetActive(false);
         }
-
     }
-
 }
