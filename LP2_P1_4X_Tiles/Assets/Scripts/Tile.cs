@@ -242,23 +242,23 @@ public class Tile : MonoBehaviour
             _tilePanel.transform.
                     GetChild(3).GetChild(0).GetChild(0).
                     gameObject.SetActive(false);
-
+            // Deactivates all the resource images
             _tilePanel.transform.
                     GetChild(3).GetChild(0).GetChild(1).
                     gameObject.SetActive(false);
-
+            // Deactivates all the resource images
             _tilePanel.transform.
                     GetChild(3).GetChild(0).GetChild(2).
                     gameObject.SetActive(false);
-
+            // Deactivates all the resource images
             _tilePanel.transform.
                     GetChild(3).GetChild(0).GetChild(3).
                     gameObject.SetActive(false);
-
+            // Deactivates all the resource images
             _tilePanel.transform.
                     GetChild(3).GetChild(0).GetChild(4).
                     gameObject.SetActive(false);
-
+            // Deactivates all the resource images
             _tilePanel.transform.
                     GetChild(3).GetChild(0).GetChild(5).
                     gameObject.SetActive(false);
@@ -284,23 +284,23 @@ public class Tile : MonoBehaviour
             if (hasAnimals) _tilePanel.transform.
                     GetChild(3).GetChild(0).GetChild(0).
                     gameObject.SetActive(true);
-
+            // Activates the resource images has desired
             if (hasFossilFuel) _tilePanel.transform.
                     GetChild(3).GetChild(0).GetChild(1).
                     gameObject.SetActive(true);
-
+            // Activates the resource images has desired
             if (hasLuxury) _tilePanel.transform.
                     GetChild(3).GetChild(0).GetChild(2).
                     gameObject.SetActive(true);
-
+            // Activates the resource images has desired
             if (hasMetals) _tilePanel.transform.
                     GetChild(3).GetChild(0).GetChild(3).
                     gameObject.SetActive(true);
-
+            // Activates the resource images has desired
             if (hasPlants) _tilePanel.transform.
                     GetChild(3).GetChild(0).GetChild(4).
                     gameObject.SetActive(true);
-
+            // Activates the resource images has desired
             if (hasPollution) _tilePanel.transform.
                     GetChild(3).GetChild(0).GetChild(5).
                     gameObject.SetActive(true);
