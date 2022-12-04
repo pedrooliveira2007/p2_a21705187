@@ -30,17 +30,7 @@ public class FileListUI : MonoBehaviour
             // Deactivates original button
             button.SetActive(false);
         }
+
     }
 
-    public void Refresh(string[] filesInFolder)
-    {
-        noFiles.SetActive(false);
-        foreach (string f in filesInFolder)
-        {
-            Destroy(files[0]);
-            files.RemoveAt(0);
-        }
-        button.SetActive(true);
-        PopulateFileUIList(filesInFolder);
-    }
 }
