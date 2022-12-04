@@ -465,7 +465,7 @@ MonoBehaviour:
   _desertColor: {r: 1, g: 0.8207309, b: 0, a: 0}
   _plainsColor: {r: 0, g: 1, b: 0.2929263, a: 0}
   _hillsColor: {r: 0.40610537, g: 0.5769941, b: 0.735849, a: 0}
-  _mountainColor: {r: 1, g: 1, b: 1, a: 0}
+  _mountainColor: {r: 0.627451, g: 0.32156864, b: 0.1764706, a: 0}
   _waterColor: {r: 0.0047169924, g: 0.1696204, b: 1, a: 0}
   _defaultColor: {r: 1, g: 0, b: 0.81258917, a: 0}
   _tileGoldValue: 0
