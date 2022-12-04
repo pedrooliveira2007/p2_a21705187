@@ -19,7 +19,7 @@ public class FileListUI : MonoBehaviour
     {
         files = new List<GameObject>();
 
-        if (((List<string>)filesInFolder).Count == 0)
+        if ((filesInFolder as List<string>).Count == 0)
             { // Gives no files message
                 noFiles.SetActive(true);
                 button.SetActive(false);

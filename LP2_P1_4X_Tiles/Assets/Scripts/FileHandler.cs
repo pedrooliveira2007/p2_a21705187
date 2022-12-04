@@ -13,12 +13,21 @@ public class FileHandler
 
     public string DirectoryPath { get; internal set; }
     public string FilePath { get; internal set; }
-    public List<string> FilesInFolder { get; internal set; }
+    private List<string> filesInFolder = new List<string>();
     public List<string> MapInformation { get; internal set; }
-    public string FileName { get; internal set; }
-    public string[] Info ;
+    private string fileName = "";
+    public FileInfo[] Info { get; private set; }
 
+    public List<string> GetFilesInFolderNames()
+    {
+        return filesInFolder;
+    }
 
+    public string GetFileName() => fileName;
+    public void SetFileName(string name)
+    {
+        this.fileName = name;
+    }
 
     /// <summary>
     /// Reads the map4xfiles folder, searching for the files
@@ -30,21 +39,25 @@ public class FileHandler
         {
             // Gets the path to the specified file
             DirectoryPath = Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.Desktop), 
+            Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
             "map4xfiles");
-            // DirectoryInfo dir =
-            //    new DirectoryInfo($"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}"
-            //        + Path.DirectorySeparatorChar + @"map4xfiles");
+            DirectoryInfo dir =
+               new DirectoryInfo($"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}"
+                   + Path.DirectorySeparatorChar + "map4xfiles");
 
-            // Searches for .map4x files inside the folder
-            // Info =  dir.GetFiles("*.map4x");
-            Info = Directory.GetFiles(DirectoryPath, "*.map4x");
+            //Searches for .map4x files inside the folder
+            Info = (dir.GetFiles("*.map4x"));
+
+
+
+
+            //   Info = Directory.GetFiles(DirectoryPath, "*.map4x");
             // If there are files inside
             {  // Get the file name for each file
-                for (int i = 0; i < Info.Length;i++)
+                for (int i = 0; i < Info.Length; i++)
                 {
                     Debug.Log(Info[i]);
-                    //FilesInFolder.Add(Info[i]);
+                    filesInFolder.Add(Info[i].Name);
                 }
             }
         }
@@ -60,9 +73,17 @@ public class FileHandler
     /// Reads the contents of the file chosen by the user in the main menu
     /// </summary>
     /// <param name="_buttonText"> The string displayed on the button </param>
-    public void ReadFile(string fileName)
+    public void ReadFile()
     {
-       
+        foreach (FileInfo f in Info)
+        {
+            if (f.Name == fileName)
+            {
+                FilePath = f.FullName;
+            }
+        }
+
+
         // Reads and assigns all lines in the specified file directory
         string[] _linesInFile = File.ReadAllLines(FilePath);
 
