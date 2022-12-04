@@ -54,18 +54,13 @@ public class FileHandler
             //   Info = Directory.GetFiles(DirectoryPath, "*.map4x");
             // If there are files inside
             {  // Get the file name for each file
-<<<<<<< HEAD
+
                 for (int i = 0; i < Info.Length; i++)
                 {
                     Debug.Log(Info[i]);
                     filesInFolder.Add(Info[i].Name);
                 }
-=======
-                /*for (int i = 0; i <Info.Lenght();i++)                                 <----------------------
-                {                                                                       <----------------------ERROR
-                    FilesInFolder.Add(Info[i]);                                         <----------------------
-                }*/
->>>>>>> Nuno
+
             }
         }
         // Catches the specified exception and displays a warning

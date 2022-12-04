@@ -6,10 +6,7 @@ public class GameController : MonoBehaviour
 
     [SerializeField] private FileHandler _fileHandlerModel = new FileHandler();
     [SerializeField] private ProcessMapInformation _processMapInformationModel;
-<<<<<<< HEAD
-=======
-    //[SerializeField] private GridHandler _gridHandlerModel;                                            <----------------ERROR
->>>>>>> Nuno
+
     [SerializeField] private FileListUI _fileListView;
 
 
@@ -32,20 +29,13 @@ public class GameController : MonoBehaviour
     /// Method to be used at the file button, reading the specific file and loading the 
     /// next scene
     /// </summary>
-    public void LoadSceneWithFile(GameObject buttonText)
+    public void LoadMenuWithFile(GameObject buttonText)
     {
 
         _fileHandlerModel.SetFileName(buttonText.GetComponentInChildren<UnityEngine.UI.Text>().text);
         _fileHandlerModel.ReadFile();
         _processMapInformationModel.ReceiveMapInfo(_fileHandlerModel.MapInformation);
-        SceneManager.LoadScene(sceneBuildIndex: 1);
-<<<<<<< HEAD
         _processMapInformationModel.ProcessTileInformation(_fileHandlerModel.MapInformation);
-
-=======
-       //ProcessTileInformation(_fileHandlerModel.MapInformation);                              <-------------------------ERROR
-        
->>>>>>> Nuno
     }
 
 }

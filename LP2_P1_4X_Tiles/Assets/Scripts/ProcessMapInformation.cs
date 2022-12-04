@@ -7,16 +7,16 @@ public class ProcessMapInformation : MonoBehaviour
     // Declaration of variables
     private string _rowsInfo, _colsInfo;
     private int _rows, _cols;
-    
+
     // Declares Tile variable to house the _tilePrefab to be assigned in
     // editor and instantiated later on
     [SerializeField] private Tile _tilePrefab;
-    
+
     // Declares List of type Tile to later on add all instantiated Tiles
     private List<Tile> _tiles;
 
-    
-    
+
+
     /// <summary>
     /// Receives the information about the map and processes it
     /// </summary>
@@ -49,9 +49,9 @@ public class ProcessMapInformation : MonoBehaviour
 
             // Gets the 2nd element of the list and gets everything 
             // before a whitespace, then stores it 
-            _colsInfo =  _mapInformation[0].
+            _colsInfo = _mapInformation[0].
                 Substring(_mapInformation[0].LastIndexOf(" ") + 1);
-            
+
             // Tries to run the specified code if an exception isn't encountered
             try
             {
@@ -90,10 +90,10 @@ public class ProcessMapInformation : MonoBehaviour
         _tileInformation.RemoveAt(0);
 
         // Passes the list into a method to generate the map
-        //GenerateGrid(_rows, _cols, _tileInformation);                                           <-------------------ERROR
-        
-    } 
-    
+        GenerateGrid(_rows, _cols, _tileInformation);
+
+    }
+
     /// <summary>
     /// Method used to generate grid of default Tiles, takes two integers
     /// </summary>
@@ -125,6 +125,6 @@ public class ProcessMapInformation : MonoBehaviour
                 _tiles.Add(spawnedTile);
                 line++;
             }
-        }   
+        }
     }
 }
