@@ -2,18 +2,17 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    private Camera _camera;
-    [SerializeField] private float _cameraSpeed = 500.0f;
-    [SerializeField] private float _zoomSpeed = 50.0f;
-    [SerializeField] private float _minZoomDist = -200.0f;
-    [SerializeField] private float _maxZoomDist = -1000.0f;
+    private float _cameraSpeed = 25.0f;
+    private float _zoomSpeed = 10.0f;
+    private float _minZoomDist = -5.0f;
+    private float _maxZoomDist = -30.0f;
 
     /// <summary>
     /// Awake is called when the script instance is being loaded.
     /// </summary>
     void Awake()
     {
-        _camera = Camera.main;
+        transform.position = new Vector3 (0.0f, 0.0f, -5.0f);
     }
 
     // Update is called once per frame
@@ -31,21 +30,37 @@ public class CameraManager : MonoBehaviour
         Vector3 _dir = transform.up * _yinput + transform.right * _xinput;
 
         transform.position += _dir * _cameraSpeed * Time.deltaTime;
+
+        if (transform.position.x < 0)
+        {
+            transform.position = new Vector3(0, 
+                transform.position.y, transform.position.z);
+        }
+
+        if (transform.position.y > 0)
+        {
+            transform.position = new Vector3(transform.position.x, 0.0f, 
+                transform.position.z);
+        }
     }
 
     private void Zoom()
     {
         float scrollInput = Input.GetAxis("Mouse ScrollWheel");
-
-        float dist = 
-            Vector3.Distance(transform.position, _camera.transform.position);
-
-        if (dist < _minZoomDist && scrollInput > 0.0f)
-            return;
-        else if (dist > _maxZoomDist && scrollInput < 0.0f)
-            return;
         
-        _camera.transform.position += 
-            _camera.transform.forward * scrollInput * _zoomSpeed;
+        transform.position += 
+            transform.forward * scrollInput * _zoomSpeed;
+
+        if (transform.position.z > _minZoomDist)
+        {
+            transform.position = new Vector3(transform.position.x, 
+                transform.position.y, _minZoomDist);
+        }
+        else if (transform.position.z < _maxZoomDist)
+        {
+            transform.position = new Vector3(transform.position.x, 
+                transform.position.y, _maxZoomDist);
+        }
+        
     }
 }
