@@ -6,7 +6,7 @@ public class GameController : MonoBehaviour
 
     [SerializeField] private FileHandler _fileHandlerModel = new FileHandler();
     [SerializeField] private ProcessMapInformation _processMapInformationModel;
-    [SerializeField] private GridHandler _gridHandlerModel;
+    //[SerializeField] private GridHandler _gridHandlerModel;
     [SerializeField] private FileListUI _fileListView;
 
 
@@ -36,7 +36,7 @@ public class GameController : MonoBehaviour
         _fileHandlerModel.GatherFolderAndFiles();
         _processMapInformationModel.ReceiveMapInfo(_fileHandlerModel.MapInformation);
         SceneManager.LoadScene(sceneBuildIndex: 1);
-       ProcessTileInformation(_fileHandlerModel.MapInformation);
+       _processMapInformationModel.ProcessTileInformation(_fileHandlerModel.MapInformation);
         
     }
 
