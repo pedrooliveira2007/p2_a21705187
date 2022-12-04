@@ -1,15 +1,10 @@
-using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
-using System;
+using System.Collections.Generic;
 
 public class FileListUI : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject button;
-
-    [SerializeField]
-    private GameObject noFiles;
+    [SerializeField] private GameObject button;
+    [SerializeField] private GameObject noFiles;
 
     private List<GameObject> files;
 

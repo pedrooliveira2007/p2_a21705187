@@ -1,42 +1,42 @@
-using System;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine;
+using System.Collections.Generic;
+using System;
 
 public class ProcessMapInformation : MonoBehaviour
 {
-    // Declaration of variables
-    private string _rowsInfo, _colsInfo;
-    private int _rows, _cols;
-
     // Declares Tile variable to house the _tilePrefab to be assigned in
     // editor and instantiated later on
     [SerializeField] private Tile _tilePrefab;
 
+    // Declaration of variables
+    private string _rowsInfo, _colsInfo;
+    private int _rows, _cols;
+
     // Declares List of type Tile to later on add all instantiated Tiles
     private List<Tile> _tiles;
 
-
+    internal Vector2 GetBoundaries() 
+        => _tiles[(_tiles.Count)-1].transform.position;
 
     public void SetTilePrefab(GameObject tilePrefab)
     {
         this._tilePrefab = tilePrefab.GetComponent<Tile>();
     }
 
-
     /// <summary>
     /// Receives the information about the map and processes it
     /// </summary>
     /// <param name="_mapInformation"> A list of strings with the 
     /// information about the map </param>
-    public void ReceiveMapInfo(IList<string> _mapInformation, Image tilePanel)
+    public void ReceiveMapInfo(IList<string> _mapInformation, Image tilePanel, Image forFuturePanel)
     {
         // Process the map information and passes it a list with strings
         ProcessMapGrid(_mapInformation);
 
         // Calls ProcessTileInformation() method and passes it 
         // _mapInformation list
-        ProcessTileInformation(_mapInformation, tilePanel);
+        ProcessTileInformation(_mapInformation, tilePanel, forFuturePanel);
     }
 
     /// <summary>
@@ -87,7 +87,7 @@ public class ProcessMapInformation : MonoBehaviour
     /// </summary>
     /// <param name="_mapInformation"> A list of strings with everything 
     /// needed to generate the game map </param>
-    private void ProcessTileInformation(IList<string> _mapInformation, Image tilePanel)
+    private void ProcessTileInformation(IList<string> _mapInformation, Image tilePanel, Image forFuturePanel)
     {
         // Instantiate new lists of strings _titleInformation 
         // and copy _mapInformation list into it
@@ -97,7 +97,7 @@ public class ProcessMapInformation : MonoBehaviour
         _tileInformation.RemoveAt(0);
 
         // Passes the list into a method to generate the map
-        GenerateGrid(_rows, _cols, _tileInformation, tilePanel);
+        GenerateGrid(_rows, _cols, _tileInformation, tilePanel, forFuturePanel);
 
     }
 
@@ -106,12 +106,12 @@ public class ProcessMapInformation : MonoBehaviour
     /// </summary>
     /// <param name="_rows"> Desired rows on grid</param>
     /// <param name="_cols"> Desired columns on grid</param>
-    private void GenerateGrid(int _rows, int _cols, IList<string> tilesBlueprints, Image tilePanel)
+    private void GenerateGrid(int _rows, int _cols, IList<string> tilesBlueprints, Image tilePanel, Image forFuturePanel)
     {
         // Initializes List of Tile to later on be used to easily refer back
         // to instantiated Tiles
         _tiles = new List<Tile>();
-        
+
         // "For" loops run for the length of the number of rows and columns of
         // the specified map
         for (int y = 0; y < _rows; y++)
@@ -126,18 +126,15 @@ public class ProcessMapInformation : MonoBehaviour
                 // the grid
                 spawnedTile.name = $"Tile {y} {x}";
 
-
                 // Adds the created Tile to the _tiles List
                 _tiles.Add(spawnedTile);
-              
             }
         }
 
-
-        for(int i = 0;i < _tiles.Count;i++)
+        for (int i = 0; i < _tiles.Count; i++)
         {
             Debug.Log(tilesBlueprints[i]);
-            _tiles[i].InitializeTile(tilesBlueprints[i],tilePanel);
+            _tiles[i].InitializeTile(tilesBlueprints[i], tilePanel, forFuturePanel);
         }
     }
 }

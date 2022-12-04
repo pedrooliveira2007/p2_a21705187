@@ -12,6 +12,8 @@ public class Tile : MonoBehaviour
     [SerializeField] public List<GameObject> _resourcesSpriteRenderer;
     // Declares Image to enable changes in the UI
     [SerializeField] private Image _tilePanel;
+    // Declares Image to enable changes in the UI
+    [SerializeField] private Image forFuturePanel;
     // Declares bools to enable changes in the UI
     [SerializeField]
     private bool
@@ -38,37 +40,31 @@ public class Tile : MonoBehaviour
             Resources.Add(Resource.Animals);
             UpdateResourceImages("Animals");
             hasAnimals = true;
-
         }
-
         if (resources.Contains("fossilfuel"))
         {
             Resources.Add(Resource.Fossilfuel);
             UpdateResourceImages("Fossilfuel");
             hasFossilFuel = true;
         }
-
         if (resources.Contains("luxury"))
         {
             Resources.Add(Resource.Luxury);
             UpdateResourceImages("Luxury");
             hasLuxury = true;
         }
-
         if (resources.Contains("metals"))
         {
             Resources.Add(Resource.Metals);
             UpdateResourceImages("Metals");
             hasMetals = true;
         }
-
         if (resources.Contains("plants"))
         {
             Resources.Add(Resource.Plants);
             UpdateResourceImages("Plants");
             hasPlants = true;
         }
-
         if (resources.Contains("pollution"))
         {
             Resources.Add(Resource.Pollution);
@@ -97,28 +93,23 @@ public class Tile : MonoBehaviour
         {
             TerrainType = Terrain.Desert;
         }
-
         else if (type.Contains("plains"))
         {
             TerrainType = Terrain.Plains;
         }
-
         else if (type.Contains("hills"))
         {
             TerrainType = Terrain.Hills;
         }
-
         else if (type.Contains("mountain"))
         {
             TerrainType = Terrain.Mountain;
         }
-
         else if (type.Contains("water"))
         {
             TerrainType = Terrain.Water;
         }
     }
-
 
     /// <summary>
     /// Initializes the tile, coloring and altering 
@@ -126,11 +117,11 @@ public class Tile : MonoBehaviour
     /// </summary>
     /// <param name="type"> A given Tile's type, from the available
     /// items in Terrains enum </param>
-    public void InitializeTile(string tileInfo, Image tilePanel)
+    public void InitializeTile(string tileInfo, Image tilePanel, Image forFuturePanel)
     {
         //set the base values for the tile terrain type and tile resources
-
         this._tilePanel = tilePanel;
+        this.forFuturePanel = forFuturePanel;
         SetTerrainType(tileInfo);
         SetResources(tileInfo);
 
@@ -169,7 +160,6 @@ public class Tile : MonoBehaviour
                 TileFoodValue += 1;
 
                 break;
-
             default: //default is white
                 _renderer.color = new Color(1f, 1f, 1f, 1f); //white
                 TileCoinValue += 0;
@@ -177,13 +167,11 @@ public class Tile : MonoBehaviour
 
                 break;
         }
-
         foreach (Resource r in Resources)
         {
             AddResourceValue(r);
         }
     }
-
 
     /// <summary>
     /// Method to apply Gold and Value modifications to Tile according to the
@@ -241,15 +229,36 @@ public class Tile : MonoBehaviour
                 break;
         }
     }
-
     public void OnMouseOver()
     {
         if (Input.GetMouseButtonUp(0))
         {
+            forFuturePanel.gameObject.SetActive(false);
+            _tilePanel.transform.
+                    GetChild(3).GetChild(0).GetChild(0).
+                    gameObject.SetActive(false);
+            _tilePanel.transform.
+                    GetChild(3).GetChild(0).GetChild(1).
+                    gameObject.SetActive(false);
+            _tilePanel.transform.
+                    GetChild(3).GetChild(0).GetChild(2).
+                    gameObject.SetActive(false);
+            _tilePanel.transform.
+                    GetChild(3).GetChild(0).GetChild(3).
+                    gameObject.SetActive(false);
+            _tilePanel.transform.
+                    GetChild(3).GetChild(0).GetChild(4).
+                    gameObject.SetActive(false);
+            _tilePanel.transform.
+                    GetChild(3).GetChild(0).GetChild(5).
+                    gameObject.SetActive(false);
             _tilePanel.gameObject.SetActive(true);
             _tilePanel.transform.GetChild(0).
                 GetComponent<RawImage>().color
                 = _renderer.color;
+            _tilePanel.transform.GetChild(0).
+                GetChild(0).GetComponent<Text>().text
+                = TerrainType.ToString();
             _tilePanel.transform.GetChild(1).
                 GetChild(0).GetComponent<Text>().text
                 = TileCoinValue.ToString();
@@ -276,78 +285,4 @@ public class Tile : MonoBehaviour
                     gameObject.SetActive(true);
         }
     }
-
-    /*
-        /// <summary>
-        /// Update method looks for ESC key presses to deactivate Tile's Camera and
-        /// unlock the cursor. Both are important steps when closing the
-        /// Tile Information panel, which is done by pressing the same key
-        /// </summary>
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                TileCamera.SetActive(false);
-                Cursor.lockState = CursorLockMode.None;
-            }
-        }
-
-        /// <summary>
-        /// Defines what happens when user places cursor over the Tile's Sprite
-        /// </summary>
-        private void OnMouseEnter()
-        {
-            // Highlight object becomes active, effectively graying out the Tile's
-            // Sprite
-            _highlight.SetActive(true);
-        }
-
-        /// <summary>
-        /// Defines what happens when user removes cursor from the Tile's Sprite
-        /// </summary>
-        private void OnMouseExit()
-        {
-            // Highlight object becomes inactive, reverting the Tile's Sprite
-            // to its default appearance
-            _highlight.SetActive(false);
-        }
-
-        /// <summary>
-        /// Defines what happens when user clicks over the Tile's Sprite
-        /// </summary>
-         private void OnMouseDown()
-         {
-             // Checks if Pointer is over UI element, and ignores click if so
-             if (EventSystem.current.IsPointerOverGameObject())
-                 return;
-
-             // Finds Canvas game object in scene
-             GameObject _canvas = GameObject.Find("Canvas");
-
-             // Locks the cursor when the Tile is clicked, as this action opens the
-             // Tile Info panel, and clicking on other Tiles while this panel is open
-             // would result in conflict of Camera feeds into the Render Texture
-             Cursor.lockState = CursorLockMode.Locked;
-
-             TileCamera.SetActive(true);
-
-             // Calls the DisplayFoodAndGold method from 
-             // TileInformationDisplay script and passes it two integers
-             _tileInfoDisplay.DisplayFoodAndGold(_tileGoldValue, _tileFoodValue);
-
-             // Calls the DisplayTile method from 
-             // TileInformationDisplay script and passes it a string 
-             _tileInfoDisplay.DisplayTerrain(_tileType);
-
-             // Calls the DisplayTile method from 
-             // TileInformationDisplay script and passes it 6 bools 
-             _tileInfoDisplay.DisplayResources(HasPlants,
-                 HasAnimals, HasMetals, HasFossilFuel, HasLuxury, HasPollution);
-
-             // Instantiates _tileInfoUI game object in scene
-             GameObject TileInformation =
-                 Instantiate(_tileInfoUI, _canvas.transform) as GameObject;
-         }
-         */
-
 }
