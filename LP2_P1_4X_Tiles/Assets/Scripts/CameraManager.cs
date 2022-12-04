@@ -45,19 +45,22 @@ public class CameraManager : MonoBehaviour
                 new Vector3(0, 
                 _cam.transform.position.y, _cam.transform.position.z);
         }
-        else if (_cam.transform.position.y > 0)
+        
+        if (_cam.transform.position.y > 0)
         {
             _cam.transform.position = 
                 new Vector3(_cam.transform.position.x, 0.0f, 
                 _cam.transform.position.z);
         }
-        else if (_cam.transform.position.x > _boundaries.x)
+        
+        if (_cam.transform.position.x > _boundaries.x)
         {
             _cam.transform.position = 
             new Vector3(_boundaries.x, 
                 _cam.transform.position.y, _cam.transform.position.z);
         }
-        else if (_cam.transform.position.y < _boundaries.y)
+        
+        if (_cam.transform.position.y < _boundaries.y)
         {
             _cam.transform.position = 
                 new Vector3(_cam.transform.position.x, _boundaries.y, 
