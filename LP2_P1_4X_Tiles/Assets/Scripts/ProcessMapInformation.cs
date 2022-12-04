@@ -133,11 +133,10 @@ public class ProcessMapInformation : MonoBehaviour
             }
         }
 
-        Debug.Log(_tiles.Count + " aaa " + tilesBlueprints.Count);
 
         for(int i = 0;i < _tiles.Count;i++)
         {
-
+            Debug.Log(tilesBlueprints[i]);
             _tiles[i].InitializeTile(tilesBlueprints[i],tilePanel);
         }
     }

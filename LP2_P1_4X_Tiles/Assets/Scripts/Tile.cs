@@ -9,13 +9,12 @@ public class Tile : MonoBehaviour
     // Declares SpriteRenderer variable to enable later changes of Sprite's color
     [SerializeField] private SpriteRenderer _renderer;
     // Declares SpriteRenderer "list" to enable later the actual tile resource sprites
-    [SerializeField] private IEnumerable<SpriteRenderer> _resourcesSpriteRenderer;
-    // Declares the Tile's Sprite color based on its type
-    [SerializeField] private Color _tileColor;
+    [SerializeField] public List<GameObject> _resourcesSpriteRenderer;
     // Declares Image to enable changes in the UI
     [SerializeField] private Image _tilePanel;
     // Declares bools to enable changes in the UI
-    [SerializeField] private bool 
+    [SerializeField]
+    private bool
         hasAnimals = false, hasFossilFuel = false,
         hasLuxury = false, hasMetals = false,
         hasPlants = false, hasPollution = false;
@@ -37,37 +36,55 @@ public class Tile : MonoBehaviour
         if (resources.Contains("animals"))
         {
             Resources.Add(Resource.Animals);
+            UpdateResourceImages("Animals");
             hasAnimals = true;
+
         }
 
         if (resources.Contains("fossilfuel"))
         {
             Resources.Add(Resource.Fossilfuel);
+            UpdateResourceImages("Fossilfuel");
             hasFossilFuel = true;
         }
 
         if (resources.Contains("luxury"))
         {
             Resources.Add(Resource.Luxury);
+            UpdateResourceImages("Luxury");
             hasLuxury = true;
         }
 
         if (resources.Contains("metals"))
         {
             Resources.Add(Resource.Metals);
+            UpdateResourceImages("Metals");
             hasMetals = true;
         }
 
         if (resources.Contains("plants"))
         {
             Resources.Add(Resource.Plants);
+            UpdateResourceImages("Plants");
             hasPlants = true;
         }
 
         if (resources.Contains("pollution"))
         {
             Resources.Add(Resource.Pollution);
+            UpdateResourceImages("Pollution");
             hasPollution = true;
+        }
+    }
+
+    private void UpdateResourceImages(string name)
+    {
+        foreach (GameObject resource in _resourcesSpriteRenderer)
+        {
+            if (resource.name == name)
+            {
+                resource.SetActive(true);
+            }
         }
     }
     /// <summary>
@@ -112,48 +129,49 @@ public class Tile : MonoBehaviour
     public void InitializeTile(string tileInfo, Image tilePanel)
     {
         //set the base values for the tile terrain type and tile resources
-        SetResources(tileInfo);
-        SetTerrainType(tileInfo);
 
+        this._tilePanel = tilePanel;
+        SetTerrainType(tileInfo);
+        SetResources(tileInfo);
 
         /* Switch statement checks for the passed Type of the tile,
            changing the color, Gold and Food Value's according to
            said type and assigns the Tile type to a string */
-        switch (this.TerrainType)
+        switch (TerrainType)
         {
             case Terrain.Desert:
-                _renderer.color = new Color(255, 209, 0, 255); //yellow 
+                _renderer.color = new Color(1f, 0.8f, 0f, 1f); ; //yellow 
                 TileCoinValue += 0;
                 TileFoodValue += 0;
 
                 break;
             case Terrain.Plains:
-                _renderer.color = new Color(0, 255, 75, 255); //green
+                _renderer.color = new Color(0f, 1f, 0.29f, 1f); ; //green
                 TileCoinValue += 0;
                 TileFoodValue += 2;
 
                 break;
             case Terrain.Hills:
-                _renderer.color = new Color(104, 147, 188, 255); //grey
+                _renderer.color = new Color(0.4f, 0.6f, 0.7f, 1f); //grey
                 TileCoinValue += 1;
                 TileFoodValue += 1;
 
                 break;
             case Terrain.Mountain:
-                _renderer.color = new Color(255, 255, 255, 255); //white
+                _renderer.color = new Color(0.62f, 0.32f, 0.17f, 1f); ; //brown
                 TileCoinValue += 1;
                 TileFoodValue += 0;
 
                 break;
             case Terrain.Water:
-                _renderer.color = new Color(0, 43, 255, 255); //blue
+                _renderer.color = new Color(0f, 0.17f, 1f, 1f); ; //blue
                 TileCoinValue += 0;
                 TileFoodValue += 1;
 
                 break;
 
-            default: //default is desert
-                _renderer.color = new Color(255, 209, 0, 255); //yellow
+            default: //default is white
+                _renderer.color = new Color(1f, 1f, 1f, 1f); //white
                 TileCoinValue += 0;
                 TileFoodValue += 0;
 
@@ -224,17 +242,9 @@ public class Tile : MonoBehaviour
         }
     }
 
-    public void SetTilePanel(Image tilePanel)
-    {
-        this._tilePanel = tilePanel;
-    }
-
-
-
-
     public void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonUp(0))
         {
             _tilePanel.gameObject.SetActive(true);
             _tilePanel.transform.GetChild(0).
