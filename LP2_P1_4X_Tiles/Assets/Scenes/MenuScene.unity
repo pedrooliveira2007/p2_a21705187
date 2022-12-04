@@ -3017,6 +3017,7 @@ GameObject:
   - component: {fileID: 1563795024}
   - component: {fileID: 1563795023}
   - component: {fileID: 1563795022}
+  - component: {fileID: 1563795025}
   m_Layer: 0
   m_Name: Game Controller
   m_TagString: Untagged
@@ -3054,6 +3055,7 @@ MonoBehaviour:
   tilePrefab: {fileID: 3918339261207540529, guid: 5319389b4bb41a24da766eff9019a359, type: 3}
   tilePanel: {fileID: 7389099746392315736}
   forFuturePanel: {fileID: 7389099744494731142}
+  _cameraManagerModel: {fileID: 1563795025}
 --- !u!4 &1563795024
 Transform:
   m_ObjectHideFlags: 0
@@ -3069,6 +3071,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1563795025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1563795021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dd05feb28bf2b348b8e9596be6a581f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cam: {fileID: 562138903}
 --- !u!1 &1706887459
 GameObject:
   m_ObjectHideFlags: 0

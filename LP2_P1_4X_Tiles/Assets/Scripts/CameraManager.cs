@@ -7,6 +7,7 @@ public class CameraManager : MonoBehaviour
     private float _zoomSpeed = 10.0f;
     private float _minZoomDist = -5.0f;
     private float _maxZoomDist = -30.0f;
+    private Vector2 _boundaries;
 
     /// <summary>
     /// Awake is called when the script instance is being loaded.
@@ -23,6 +24,11 @@ public class CameraManager : MonoBehaviour
         Zoom();
     }
 
+    internal void ReceivePosition(Vector2 _boundariesPos)
+    {
+        _boundaries = _boundariesPos;
+    }
+
     private void Move()
     {
         float _xinput = Input.GetAxis("Horizontal");
@@ -35,13 +41,26 @@ public class CameraManager : MonoBehaviour
 
         if (_cam.transform.position.x < 0)
         {
-            _cam.transform.position = new Vector3(0, 
+            _cam.transform.position = 
+                new Vector3(0, 
                 _cam.transform.position.y, _cam.transform.position.z);
         }
         else if (_cam.transform.position.y > 0)
         {
             _cam.transform.position = 
                 new Vector3(_cam.transform.position.x, 0.0f, 
+                _cam.transform.position.z);
+        }
+        else if (_cam.transform.position.x > _boundaries.x)
+        {
+            _cam.transform.position = 
+            new Vector3(_boundaries.x, 
+                _cam.transform.position.y, _cam.transform.position.z);
+        }
+        else if (_cam.transform.position.y < _boundaries.y)
+        {
+            _cam.transform.position = 
+                new Vector3(_cam.transform.position.x, _boundaries.y, 
                 _cam.transform.position.z);
         }
     }

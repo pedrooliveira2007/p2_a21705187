@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject tilePrefab;
     [SerializeField] private Image tilePanel;
     [SerializeField] private Image forFuturePanel;
+    [SerializeField] private CameraManager _cameraManagerModel;
 
     void Awake()
     {
@@ -35,5 +36,6 @@ public class GameController : MonoBehaviour
         _fileHandlerModel.SetFileName(buttonText.GetComponentInChildren<Text>().text);
         _fileHandlerModel.ReadFile();
         _processMapInformationModel.ReceiveMapInfo(_fileHandlerModel.MapInformation, tilePanel, forFuturePanel);
+        _cameraManagerModel.ReceivePosition(_processMapInformationModel.GetBoundaries());
     }
 }
