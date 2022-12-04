@@ -1,7 +1,7 @@
-using System;
+using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
-using UnityEngine;
+using System;
 
 /// <summary>
 /// Gets the files in the target directory, reads them and stores the content
@@ -10,12 +10,11 @@ using UnityEngine;
 public class FileHandler
 {
     // Declaration of variables
-
+    private List<string> filesInFolder = new List<string>();
+    private string fileName = "";
     public string DirectoryPath { get; internal set; }
     public string FilePath { get; internal set; }
-    private List<string> filesInFolder = new List<string>();
     public List<string> MapInformation { get; internal set; }
-    private string fileName = "";
     public FileInfo[] Info { get; private set; }
 
     public List<string> GetFilesInFolderNames()
@@ -44,23 +43,16 @@ public class FileHandler
             DirectoryInfo dir =
                new DirectoryInfo($"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}"
                    + Path.DirectorySeparatorChar + "map4xfiles");
-
             //Searches for .map4x files inside the folder
             Info = (dir.GetFiles("*.map4x"));
 
-
-
-
-            //   Info = Directory.GetFiles(DirectoryPath, "*.map4x");
             // If there are files inside
             {  // Get the file name for each file
-
                 for (int i = 0; i < Info.Length; i++)
                 {
                     Debug.Log(Info[i]);
                     filesInFolder.Add(Info[i].Name);
                 }
-
             }
         }
         // Catches the specified exception and displays a warning
@@ -68,7 +60,6 @@ public class FileHandler
         {
             Console.WriteLine("The folder was not found in the desktop", _dnfe);
         }
-
     }
 
     /// <summary>
@@ -84,8 +75,6 @@ public class FileHandler
                 FilePath = f.FullName;
             }
         }
-
-
         // Reads and assigns all lines in the specified file directory
         string[] _linesInFile = File.ReadAllLines(FilePath);
 
@@ -123,7 +112,5 @@ public class FileHandler
         {
             Debug.Log(line);
         }
-
     }
 }
-

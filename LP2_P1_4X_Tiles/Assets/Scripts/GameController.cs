@@ -1,24 +1,20 @@
-using UnityEngine.SceneManagement;
-using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-
     [SerializeField] private FileHandler _fileHandlerModel = new FileHandler();
     [SerializeField] private ProcessMapInformation _processMapInformationModel;
-
     [SerializeField] private FileListUI _fileListView;
     [SerializeField] private GameObject tilePrefab;
     [SerializeField] private Image tilePanel;
+    [SerializeField] private Image forFuturePanel;
 
     void Awake()
     {
         DontDestroyOnLoad(transform.gameObject);
         _processMapInformationModel.SetTilePrefab(tilePrefab);
-
     }
-
 
     public void LoadFileList()
     {
@@ -36,9 +32,8 @@ public class GameController : MonoBehaviour
     public void LoadMenuWithFile(GameObject buttonText)
     {
 
-        _fileHandlerModel.SetFileName(buttonText.GetComponentInChildren<UnityEngine.UI.Text>().text);
+        _fileHandlerModel.SetFileName(buttonText.GetComponentInChildren<Text>().text);
         _fileHandlerModel.ReadFile();
-        _processMapInformationModel.ReceiveMapInfo(_fileHandlerModel.MapInformation, tilePanel);
+        _processMapInformationModel.ReceiveMapInfo(_fileHandlerModel.MapInformation, tilePanel, forFuturePanel);
     }
-
 }
