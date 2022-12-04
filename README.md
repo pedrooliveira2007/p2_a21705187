@@ -60,7 +60,7 @@ instanciadas é lhes atribuído o tipo de terreno e recursos.
 
 ### UML
 
-![UML](uml.png)
+![UML](UML.png)
 
 ## Referências
 
