@@ -65,7 +65,6 @@ public class FileHandler
     /// <summary>
     /// Reads the contents of the file chosen by the user in the main menu
     /// </summary>
-    /// <param name="_buttonText"> The string displayed on the button </param>
     public void ReadFile()
     {
         foreach (FileInfo f in Info)
@@ -106,11 +105,6 @@ public class FileHandler
                 // Adds the current line string to the _mapInformation list
                 MapInformation.Add(line);
             }
-        }
-
-        foreach (string line in MapInformation)
-        {
-            Debug.Log(line);
         }
     }
 }

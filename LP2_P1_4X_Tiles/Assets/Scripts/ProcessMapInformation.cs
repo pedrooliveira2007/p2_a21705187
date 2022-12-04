@@ -27,9 +27,11 @@ public class ProcessMapInformation : MonoBehaviour
     /// <summary>
     /// Receives the information about the map and processes it
     /// </summary>
-    /// <param name="_mapInformation"> A list of strings with the 
-    /// information about the map </param>
-    public void ReceiveMapInfo(IList<string> _mapInformation, Image tilePanel, Image forFuturePanel)
+    /// <param name="_mapInformation"> IList regarding the map info </param>
+    /// <param name="tilePanel"> Image regarding the tile's sprite </param>
+    /// <param name="forFuturePanel"> Image regarding future functions </param>
+    public void ReceiveMapInfo(IList<string> _mapInformation, Image tilePanel, 
+        Image forFuturePanel)
     {
         // Process the map information and passes it a list with strings
         ProcessMapGrid(_mapInformation);
@@ -85,9 +87,11 @@ public class ProcessMapInformation : MonoBehaviour
     /// Removes the Columns and Rows from the list and passes a new list 
     /// necessary for the grid generation
     /// </summary>
-    /// <param name="_mapInformation"> A list of strings with everything 
-    /// needed to generate the game map </param>
-    private void ProcessTileInformation(IList<string> _mapInformation, Image tilePanel, Image forFuturePanel)
+    /// <param name="_mapInformation"> IList regarding the map info </param>
+    /// <param name="tilePanel"> Image regarding the tile's sprite </param>
+    /// <param name="forFuturePanel"> Image regarding future functions </param>
+    private void ProcessTileInformation(IList<string> _mapInformation, 
+        Image tilePanel, Image forFuturePanel)
     {
         // Instantiate new lists of strings _titleInformation 
         // and copy _mapInformation list into it
@@ -104,9 +108,14 @@ public class ProcessMapInformation : MonoBehaviour
     /// <summary>
     /// Method used to generate grid of default Tiles, takes two integers
     /// </summary>
-    /// <param name="_rows"> Desired rows on grid</param>
-    /// <param name="_cols"> Desired columns on grid</param>
-    private void GenerateGrid(int _rows, int _cols, IList<string> tilesBlueprints, Image tilePanel, Image forFuturePanel)
+    /// <param name="_rows"> The int value for the rows in the map </param>
+    /// <param name="_cols"> The int value for the rows in the map </param>
+    /// <param name="tilesBlueprints"> IList of strings to setup the 
+    /// tiles </param>
+    /// <param name="tilePanel"> Image regarding the tile's sprite </param>
+    /// <param name="forFuturePanel"> Image regarding future functions </param>
+    private void GenerateGrid(int _rows, int _cols, 
+        IList<string> tilesBlueprints, Image tilePanel, Image forFuturePanel)
     {
         // Initializes List of Tile to later on be used to easily refer back
         // to instantiated Tiles
@@ -131,10 +140,12 @@ public class ProcessMapInformation : MonoBehaviour
             }
         }
 
+        // Loop that goes through each tile and instantiates each one
         for (int i = 0; i < _tiles.Count; i++)
         {
-            Debug.Log(tilesBlueprints[i]);
-            _tiles[i].InitializeTile(tilesBlueprints[i], tilePanel, forFuturePanel);
+            // Instantiates the given tile of the list
+            _tiles[i].InitializeTile(tilesBlueprints[i], 
+                tilePanel, forFuturePanel);
         }
     }
 }
