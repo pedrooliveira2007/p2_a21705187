@@ -5,7 +5,9 @@
 ### Grupo
 
 Afonso Rosa - a21802169  
+
 Nuno Figueiredo - a21705451
+
 Pedro Oliveira - a21705187
 
 ### Distribuição
@@ -37,5 +39,8 @@ X
 ![UML](uml.png)
 
 ## Referências
+
+Projetos feitos no ano passado fora reaproveitados pelos alunos, nomeadamente o
+projeto do [Afonso Rosa](https://github.com/AppInfoMech/LP2_Project1_4XEngine).
 
 X
