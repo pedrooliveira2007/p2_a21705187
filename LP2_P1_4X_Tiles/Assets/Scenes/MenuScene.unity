@@ -2512,9 +2512,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1274376427}
-        m_TargetAssemblyTypeName: FileSelect, Assembly-CSharp
-        m_MethodName: Refresh
+      - m_Target: {fileID: 1563795023}
+        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
+        m_MethodName: LoadFileList
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
