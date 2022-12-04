@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    // Declare variables
+    // Declare variables and one of them to be assigned in-editor
     [SerializeField] private Camera _cam;
     private float _cameraSpeed = 25.0f;
     private float _zoomSpeed = 10.0f;
