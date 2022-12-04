@@ -16,7 +16,8 @@ public class ProcessMapInformation : MonoBehaviour
     // Declares List of type Tile to later on add all instantiated Tiles
     private List<Tile> _tiles;
 
-
+    internal Vector2 GetBoundaries() 
+        => _tiles[(_tiles.Count)-1].transform.position;
 
     public void SetTilePrefab(GameObject tilePrefab)
     {

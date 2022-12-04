@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
+    [SerializeField] private Camera _cam;
     private float _cameraSpeed = 25.0f;
     private float _zoomSpeed = 10.0f;
     private float _minZoomDist = -5.0f;
@@ -12,7 +13,7 @@ public class CameraManager : MonoBehaviour
     /// </summary>
     void Awake()
     {
-        transform.position = new Vector3 (0.0f, 0.0f, -5.0f);
+        _cam.transform.position = new Vector3 (0.0f, 0.0f, -5.0f);
     }
 
     // Update is called once per frame
@@ -27,20 +28,21 @@ public class CameraManager : MonoBehaviour
         float _xinput = Input.GetAxis("Horizontal");
         float _yinput = Input.GetAxis("Vertical");
 
-        Vector3 _dir = transform.up * _yinput + transform.right * _xinput;
+        Vector3 _dir = _cam.transform.up * _yinput + 
+            _cam.transform.right * _xinput;
 
-        transform.position += _dir * _cameraSpeed * Time.deltaTime;
+        _cam.transform.position += _dir * _cameraSpeed * Time.deltaTime;
 
-        if (transform.position.x < 0)
+        if (_cam.transform.position.x < 0)
         {
-            transform.position = new Vector3(0, 
-                transform.position.y, transform.position.z);
+            _cam.transform.position = new Vector3(0, 
+                _cam.transform.position.y, _cam.transform.position.z);
         }
-
-        if (transform.position.y > 0)
+        else if (_cam.transform.position.y > 0)
         {
-            transform.position = new Vector3(transform.position.x, 0.0f, 
-                transform.position.z);
+            _cam.transform.position = 
+                new Vector3(_cam.transform.position.x, 0.0f, 
+                _cam.transform.position.z);
         }
     }
 
@@ -48,18 +50,20 @@ public class CameraManager : MonoBehaviour
     {
         float scrollInput = Input.GetAxis("Mouse ScrollWheel");
         
-        transform.position += 
-            transform.forward * scrollInput * _zoomSpeed;
+        _cam.transform.position += 
+            _cam.transform.forward * scrollInput * _zoomSpeed;
 
-        if (transform.position.z > _minZoomDist)
+        if (_cam.transform.position.z > _minZoomDist)
         {
-            transform.position = new Vector3(transform.position.x, 
-                transform.position.y, _minZoomDist);
+            _cam.transform.position = 
+                new Vector3(_cam.transform.position.x, 
+                _cam.transform.position.y, _minZoomDist);
         }
-        else if (transform.position.z < _maxZoomDist)
+        else if (_cam.transform.position.z < _maxZoomDist)
         {
-            transform.position = new Vector3(transform.position.x, 
-                transform.position.y, _maxZoomDist);
+            _cam.transform.position = 
+            new Vector3(_cam.transform.position.x, 
+                _cam.transform.position.y, _maxZoomDist);
         }
         
     }
