@@ -11,15 +11,6 @@ public class CameraManager : MonoBehaviour
     private Vector2 _boundaries;
 
     /// <summary>
-    /// Awake is called when the script instance is being loaded.
-    /// </summary>
-    void Awake()
-    {
-        // Sets the initial camera position
-        _cam.transform.position = new Vector3 (0.0f, 0.0f, -5.0f);
-    }
-
-    /// <summary>
     /// Update is called once per frame
     /// </summary>
     void Update()
@@ -38,6 +29,19 @@ public class CameraManager : MonoBehaviour
     {
         // Assigns value to local Vector2 variable
         _boundaries = _boundariesPos;
+
+        // Calls the method and passes it the coordinates values
+        SetInitialPos();
+    }
+
+    /// <summary>
+    /// Sets the camera's initial position to be in the middle of the map
+    /// </summary>
+    private void SetInitialPos()
+    {
+        // Sets the initial camera position
+        _cam.transform.position = 
+            new Vector3 ((_boundaries.x/2), (_boundaries.y/2), -5.0f);
     }
 
     /// <summary>
