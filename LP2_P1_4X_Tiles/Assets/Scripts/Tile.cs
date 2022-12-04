@@ -256,6 +256,9 @@ public class Tile : MonoBehaviour
             _tilePanel.transform.GetChild(0).
                 GetComponent<RawImage>().color
                 = _renderer.color;
+            _tilePanel.transform.GetChild(0).
+                GetChild(0).GetComponent<Text>().text
+                = TerrainType.ToString();
             _tilePanel.transform.GetChild(1).
                 GetChild(0).GetComponent<Text>().text
                 = TileCoinValue.ToString();
