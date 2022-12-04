@@ -1,5 +1,6 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -8,11 +9,14 @@ public class GameController : MonoBehaviour
     [SerializeField] private ProcessMapInformation _processMapInformationModel;
 
     [SerializeField] private FileListUI _fileListView;
-
+    [SerializeField] private GameObject tilePrefab;
+    [SerializeField] private Image tilePanel;
 
     void Awake()
     {
         DontDestroyOnLoad(transform.gameObject);
+        _processMapInformationModel.SetTilePrefab(tilePrefab);
+
     }
 
 
@@ -34,8 +38,7 @@ public class GameController : MonoBehaviour
 
         _fileHandlerModel.SetFileName(buttonText.GetComponentInChildren<UnityEngine.UI.Text>().text);
         _fileHandlerModel.ReadFile();
-        _processMapInformationModel.ReceiveMapInfo(_fileHandlerModel.MapInformation);
-        _processMapInformationModel.ProcessTileInformation(_fileHandlerModel.MapInformation);
+        _processMapInformationModel.ReceiveMapInfo(_fileHandlerModel.MapInformation, tilePanel);
     }
 
 }

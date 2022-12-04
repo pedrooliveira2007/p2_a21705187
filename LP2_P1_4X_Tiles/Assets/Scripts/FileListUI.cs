@@ -28,7 +28,6 @@ public class FileListUI : MonoBehaviour
             { // Creates a button with the file name for each file
                 foreach (string f in filesInFolder)
                 {
-                    Console.WriteLine("aaa"+f);
                     files.Add(Instantiate(button, 
                         (button.transform.position), 
                         button.transform.rotation, button.transform.parent));

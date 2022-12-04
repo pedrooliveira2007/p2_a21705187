@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ProcessMapInformation : MonoBehaviour
 {
@@ -17,19 +18,25 @@ public class ProcessMapInformation : MonoBehaviour
 
 
 
+    public void SetTilePrefab(GameObject tilePrefab)
+    {
+        this._tilePrefab = tilePrefab.GetComponent<Tile>();
+    }
+
+
     /// <summary>
     /// Receives the information about the map and processes it
     /// </summary>
     /// <param name="_mapInformation"> A list of strings with the 
     /// information about the map </param>
-    public void ReceiveMapInfo(IList<string> _mapInformation)
+    public void ReceiveMapInfo(IList<string> _mapInformation, Image tilePanel)
     {
         // Process the map information and passes it a list with strings
         ProcessMapGrid(_mapInformation);
 
         // Calls ProcessTileInformation() method and passes it 
         // _mapInformation list
-        ProcessTileInformation(_mapInformation);
+        ProcessTileInformation(_mapInformation, tilePanel);
     }
 
     /// <summary>
@@ -80,7 +87,7 @@ public class ProcessMapInformation : MonoBehaviour
     /// </summary>
     /// <param name="_mapInformation"> A list of strings with everything 
     /// needed to generate the game map </param>
-    public void ProcessTileInformation(IList<string> _mapInformation)
+    private void ProcessTileInformation(IList<string> _mapInformation, Image tilePanel)
     {
         // Instantiate new lists of strings _titleInformation 
         // and copy _mapInformation list into it
@@ -90,7 +97,7 @@ public class ProcessMapInformation : MonoBehaviour
         _tileInformation.RemoveAt(0);
 
         // Passes the list into a method to generate the map
-        GenerateGrid(_rows, _cols, _tileInformation);
+        GenerateGrid(_rows, _cols, _tileInformation, tilePanel);
 
     }
 
@@ -99,12 +106,12 @@ public class ProcessMapInformation : MonoBehaviour
     /// </summary>
     /// <param name="_rows"> Desired rows on grid</param>
     /// <param name="_cols"> Desired columns on grid</param>
-    private void GenerateGrid(int _rows, int _cols, IList<string> tilesBlueprints)
+    private void GenerateGrid(int _rows, int _cols, IList<string> tilesBlueprints, Image tilePanel)
     {
         // Initializes List of Tile to later on be used to easily refer back
         // to instantiated Tiles
         _tiles = new List<Tile>();
-        int line = 0;
+        
         // "For" loops run for the length of the number of rows and columns of
         // the specified map
         for (int y = 0; y < _rows; y++)
@@ -119,12 +126,19 @@ public class ProcessMapInformation : MonoBehaviour
                 // the grid
                 spawnedTile.name = $"Tile {y} {x}";
 
-                spawnedTile.InitializeTile(tilesBlueprints[line]);
 
                 // Adds the created Tile to the _tiles List
                 _tiles.Add(spawnedTile);
-                line++;
+              
             }
+        }
+
+        Debug.Log(_tiles.Count + " aaa " + tilesBlueprints.Count);
+
+        for(int i = 0;i < _tiles.Count;i++)
+        {
+
+            _tiles[i].InitializeTile(tilesBlueprints[i],tilePanel);
         }
     }
 }

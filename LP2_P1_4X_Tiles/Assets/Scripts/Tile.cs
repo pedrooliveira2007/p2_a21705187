@@ -26,7 +26,7 @@ public class Tile : MonoBehaviour
     // Declares Type attribute for the Tile from the set defined by enum Terrains
     public Terrain TerrainType { get; private set; }
     // Declares a generic enumeration of resources present inside this tile
-    public List<Resource> Resources { get; private set; }
+    public List<Resource> Resources { get; private set; } = new List<Resource>();
 
     /// <summary>
     /// Method used to set the tile Resources
@@ -109,7 +109,7 @@ public class Tile : MonoBehaviour
     /// </summary>
     /// <param name="type"> A given Tile's type, from the available
     /// items in Terrains enum </param>
-    public void InitializeTile(string tileInfo)
+    public void InitializeTile(string tileInfo, Image tilePanel)
     {
         //set the base values for the tile terrain type and tile resources
         SetResources(tileInfo);
@@ -223,6 +223,14 @@ public class Tile : MonoBehaviour
                 break;
         }
     }
+
+    public void SetTilePanel(Image tilePanel)
+    {
+        this._tilePanel = tilePanel;
+    }
+
+
+
 
     public void OnMouseOver()
     {
