@@ -90,7 +90,7 @@ public class ProcessMapInformation : MonoBehaviour
         _tileInformation.RemoveAt(0);
 
         // Passes the list into a method to generate the map
-        GenerateGrid(_rows, _cols, _tileInformation);
+        //GenerateGrid(_rows, _cols, _tileInformation);                                           <-------------------ERROR
         
     } 
     
