@@ -1,3 +1,6 @@
+- codigo enunciado BD832
+- Pedro Oliveira, a21705187
+
 # LP2_P1_4X_Tiles
 
 ## Autoria
