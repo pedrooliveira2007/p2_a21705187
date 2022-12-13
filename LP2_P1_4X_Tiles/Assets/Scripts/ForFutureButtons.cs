@@ -48,6 +48,11 @@ public class ForFutureButtons : MonoBehaviour
         IEnumerable<Tile> target = tileList;
 
         target = target.Where(tile => tile.Resources.Count()>2);
+        string s = "";
+        foreach(Tile t in target){
+            s+= t.TerrainType +"  "+ t.Resources.ToString()+"  "+ t.gameObject.transform.pos.ToString();
+
+        }
 
         // Changes the display text of the objects child text component
         forFuturePanel.GetComponentInChildren<Text>().text = target.Count().ToString();
