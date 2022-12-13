@@ -50,7 +50,7 @@ public class ForFutureButtons : MonoBehaviour
         target = target.Where(tile => tile.Resources.Count()>2);
         string s = "";
         foreach(Tile t in target){
-            s+= t.TerrainType +"  "+ t.Resources.ToString()+"  "+ t.gameObject.transform.pos.ToString();
+            s+= t.TerrainType +"  "+ t.Resources.ToString()+"  ";
 
         }
 
