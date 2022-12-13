@@ -4203,9 +4203,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 7389099746147513905}
-        m_TargetAssemblyTypeName: ForFutureButtons, Assembly-CSharp
-        m_MethodName: ForFutureButton5
+      - m_Target: {fileID: 1563795023}
+        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
+        m_MethodName: Button5
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4390,9 +4390,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 7389099746147513905}
-        m_TargetAssemblyTypeName: ForFutureButtons, Assembly-CSharp
-        m_MethodName: ForFutureButton2
+      - m_Target: {fileID: 1563795023}
+        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
+        m_MethodName: Button2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4909,9 +4909,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 7389099746147513905}
-        m_TargetAssemblyTypeName: ForFutureButtons, Assembly-CSharp
-        m_MethodName: ForFutureButton3
+      - m_Target: {fileID: 1563795023}
+        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
+        m_MethodName: Button3
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5198,9 +5198,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 7389099746147513905}
-        m_TargetAssemblyTypeName: ForFutureButtons, Assembly-CSharp
-        m_MethodName: ForFutureButton4
+      - m_Target: {fileID: 1563795023}
+        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
+        m_MethodName: Button4
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5886,7 +5886,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &7389099746147513932
 MonoBehaviour:
   m_ObjectHideFlags: 0

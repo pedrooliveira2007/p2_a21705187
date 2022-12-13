@@ -31,7 +31,7 @@ public class ForFutureButtons : MonoBehaviour
         target = target.Where(tile => tile.TerrainType != Terrain.Desert);
         int value = 0;
 
-        foreach(tile t in target){
+        foreach(Tile t in target){
             value += t.TileCoinValue;
         }
 
@@ -69,9 +69,13 @@ public class ForFutureButtons : MonoBehaviour
     /// <summary>
     /// Method that changes text on a respective child game object
     /// </summary>
-    public void ForFutureButton5()
+    public void ForFutureButton5(IEnumerable<Tile> tileList)
     {
+        IEnumerable<Tile> target = tileList;
+
+        target = target.Where(tile => tile.Resources.Count()>2);
+
         // Changes the display text of the objects child text component
-        forFuturePanel.GetComponentInChildren<Text>().text = "For the future 5...";
+        forFuturePanel.GetComponentInChildren<Text>().text = target.Count().ToString();
     }
 }
