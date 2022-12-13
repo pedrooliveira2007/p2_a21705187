@@ -2841,6 +2841,7 @@ MonoBehaviour:
   tilePanel: {fileID: 7389099746392315736}
   forFuturePanel: {fileID: 7389099744494731142}
   _cameraManagerModel: {fileID: 1563795025}
+  _forFutureButtons: {fileID: 7389099746147513905}
 --- !u!4 &1563795024
 Transform:
   m_ObjectHideFlags: 0
@@ -5885,7 +5886,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &7389099746147513932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6354,9 +6355,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 7389099746147513905}
-        m_TargetAssemblyTypeName: ForFutureButtons, Assembly-CSharp
-        m_MethodName: ForFutureButton1
+      - m_Target: {fileID: 1563795023}
+        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
+        m_MethodName: CallTilesWithResources
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

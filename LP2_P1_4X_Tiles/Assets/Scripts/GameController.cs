@@ -1,5 +1,6 @@
 using UnityEngine.UI;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class GameController : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private Image tilePanel;
     [SerializeField] private Image forFuturePanel;
     [SerializeField] private CameraManager _cameraManagerModel;
+    [SerializeField] private ForFutureButtons _forFutureButtons;
 
     void Awake()
     {
@@ -37,4 +39,69 @@ public class GameController : MonoBehaviour
         _processMapInformationModel.ReceiveMapInfo(_fileHandlerModel.MapInformation, tilePanel, forFuturePanel);
         _cameraManagerModel.ReceivePosition(_processMapInformationModel.GetBoundaries());
     }
+
+ public void CallTilesWithResources()
+    {
+        IEnumerable<Tile> target = _processMapInformationModel.GetTiles();
+
+        //target = target.Where(tile => tile.TerrainType == Terrain.Desert);
+
+        _forFutureButtons.ForFutureButton1(target);
+    }
+ public void Button2()
+    {
+        IEnumerable<Tile> target = _processMapInformationModel.GetTiles();
+
+        //target = target.Where(tile => tile.TerrainType == Terrain.Desert);
+
+        _forFutureButtons.ForFutureButton2(target);
+    }
+
+
+    public void Button3()
+    {
+        IEnumerable<Tile> target = _processMapInformationModel.GetTiles();
+
+        //target = target.Where(tile => tile.TerrainType == Terrain.Desert);
+
+        _forFutureButtons.ForFutureButton3(target);
+    }
+
+public void Button4()
+    {
+        IEnumerable<Tile> target = _processMapInformationModel.GetTiles();
+
+        //target = target.Where(tile => tile.TerrainType == Terrain.Desert);
+
+        _forFutureButtons.ForFutureButton4(target);
+    }
+
+
+public void Button5()
+    {
+        IEnumerable<Tile> target = _processMapInformationModel.GetTiles();
+
+        //target = target.Where(tile => tile.TerrainType == Terrain.Desert);
+
+        _forFutureButtons.ForFutureButton5(target);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

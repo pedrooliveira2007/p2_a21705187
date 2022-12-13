@@ -1,5 +1,7 @@
 using UnityEngine.UI;
 using UnityEngine;
+using System.Linq;
+using System.Collections.Generic;
 
 public class ForFutureButtons : MonoBehaviour
 {
@@ -9,37 +11,59 @@ public class ForFutureButtons : MonoBehaviour
     /// <summary>
     /// Method that changes text on a respective child game object
     /// </summary>
-    public void ForFutureButton1()
+    public void ForFutureButton1(IEnumerable<Tile> tileList)
     {
+        IEnumerable<Tile> target = tileList;
+
+        target = target.Where(tile => tile.Resources.Count()>=2);
+
         // Changes the display text of the objects child text component
-        forFuturePanel.GetComponentInChildren<Text>().text = "For the future 1...";
+        forFuturePanel.GetComponentInChildren<Text>().text = target.Count().ToString();
     }
 
     /// <summary>
     /// Method that changes text on a respective child game object
     /// </summary>
-    public void ForFutureButton2()
+    public void ForFutureButton2(IEnumerable<Tile> tileList)
     {
+        IEnumerable<Tile> target = tileList;
+
+        target = target.Where(tile => tile.TerrainType != Terrain.Desert);
+        int value = 0;
+
+        foreach(tile t in target){
+            value += t.TileCoinValue;
+        }
+
+
         // Changes the display text of the objects child text component
-        forFuturePanel.GetComponentInChildren<Text>().text = "For the future 2...";
+        forFuturePanel.GetComponentInChildren<Text>().text = value.ToString();
     }
 
     /// <summary>
     /// Method that changes text on a respective child game object
     /// </summary>
-    public void ForFutureButton3()
+    public void ForFutureButton3(IEnumerable<Tile> tileList)
     {
+        IEnumerable<Tile> target = tileList;
+
+        target = target.Where(tile => tile.Resources.Count()>2);
+
         // Changes the display text of the objects child text component
-        forFuturePanel.GetComponentInChildren<Text>().text = "For the future 3...";
+        forFuturePanel.GetComponentInChildren<Text>().text = target.Count().ToString();
     }
 
     /// <summary>
     /// Method that changes text on a respective child game object
     /// </summary>
-    public void ForFutureButton4()
+    public void ForFutureButton4(IEnumerable<Tile> tileList)
     {
+        IEnumerable<Tile> target = tileList;
+
+        target = target.Where(tile => tile.Resources.Contains(Resource.Luxury)).Where(tile=>tile.TerrainType == Terrain.Plains);
+
         // Changes the display text of the objects child text component
-        forFuturePanel.GetComponentInChildren<Text>().text = "For the future 4...";
+        forFuturePanel.GetComponentInChildren<Text>().text = target.Count() >0? "contem":"não contem";
     }
 
     /// <summary>

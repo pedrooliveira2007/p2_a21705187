@@ -148,4 +148,7 @@ public class ProcessMapInformation : MonoBehaviour
                 tilePanel, forFuturePanel);
         }
     }
+
+    public List<Tile> GetTiles() => _tiles;
+
 }
